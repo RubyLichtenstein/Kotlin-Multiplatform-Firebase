@@ -11,3 +11,19 @@ Firebase functions in kotlin and transpiled to JS.
 
 Models 
 Repo
+
+
+### Server 
+
+### Android Application 
+
+### iOS Application 
+
+## How to build and run 
+
+
+#### Android 
+
+#### Server 
+
+#### iOS 
