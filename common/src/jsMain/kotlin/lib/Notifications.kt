@@ -1,38 +1,36 @@
 package lib
 
+import admin.messaging.*
 import firebaseAdmin
+import kotlinx.coroutines.await
 import kotlin.js.*
 
-fun defaultNotificationOptions() = json(
-    "priority" to "high",
-    "timeToLive" to 60 * 60 * 24
-)
+fun defaultNotificationOptions(): MessagingOptions =
+    MessagingOptions().apply {
+        priority = "high"
+        timeToLive = 60 * 60 * 24
+    }
 
-fun sendDataNotificationToTopic(
+suspend fun sendDataNotificationToTopic(
     topic: String,
     payload: Any,
-    options: Json = defaultNotificationOptions()
-): Promise<Unit> {
+    options: MessagingOptions = defaultNotificationOptions()
+): MessagingTopicResponse {
 
     val payloadJson = json("data" to payload)
+    val notificationMessagePayload = NotificationMessagePayload()
 
-    console.log(
-        "sendNotificationToTopic, topic: $topic, payload: ${JSON.stringify(payloadJson)}, options: ${JSON.stringify(
-            options
-        )}"
-    );
-    return firebaseAdmin
-        .messaging()
-        .sendToTopic(topic, payloadJson, options)
-        .then { value ->
-            console.log("MessagingTopicResponse messageId: ${JSON.stringify(value)}");
-        }
+    val messagePayload = MessagingPayload()
+    val dataMessagePayload = DataMessagePayload()
+    messagePayload.data = dataMessagePayload
+
+    return Messaging().sendToTopic(topic, messagePayload, options).await()
 }
 
 fun sendDataNotificationToDevice(
     registrationToken: String,
     payload: Any,
-    options: Json = defaultNotificationOptions()
+    options: MessagingOptions = defaultNotificationOptions()
 ): Promise<Unit> {
     console.log(
         "sendDataNotificationToDevice, registrationToken: $registrationToken, payload: ${JSON.stringify(

@@ -1,14 +1,14 @@
 package db.posts
 
-import db.FirebaseDbRefs.REF_POSTS
+import features.posts.REF_POSTS
 import functions
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asPromise
 import kotlinx.coroutines.async
+import ts2kt_firebase_admin.document
 
 fun dbPostsOnCreate(): dynamic {
-    return functions.firestore
-        .document("/$REF_POSTS/{id}")
+    return document("/$REF_POSTS/{id}")
         .onCreate { snapshot, context ->
             GlobalScope.async {
                 sendNewPostNotification()

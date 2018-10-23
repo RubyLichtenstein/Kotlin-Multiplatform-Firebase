@@ -37,4 +37,7 @@ actual abstract class Repo<T : Any> actual constructor(
             .update(field, value)
             .await()
     }
+
+    actual suspend fun getAll(): List<T> =
+        collection.get().await().documents.map { parser.parse(it) }
 }

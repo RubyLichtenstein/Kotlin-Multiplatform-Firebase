@@ -92,13 +92,15 @@ external interface WebpushNotification {
     var body: String? get() = definedExternally; set(value) = definedExternally
     var icon: String? get() = definedExternally; set(value) = definedExternally
 }
-external interface DataMessagePayload {
-    @nativeGetter
-    operator fun get(key: String): String?
-    @nativeSetter
-    operator fun set(key: String, value: String)
+
+external class DataMessagePayload : Json {
+    override operator fun set(propertyName: String, value: Any?)
+
+    override operator fun get(propertyName: String): String?
+//    @nativeSetter
+//    operator fun set(key: String, value: String)
 }
-external interface NotificationMessagePayload {
+external class NotificationMessagePayload {
     var tag: String? get() = definedExternally; set(value) = definedExternally
     var body: String? get() = definedExternally; set(value) = definedExternally
     var icon: String? get() = definedExternally; set(value) = definedExternally
@@ -111,16 +113,13 @@ external interface NotificationMessagePayload {
     var clickAction: String? get() = definedExternally; set(value) = definedExternally
     var titleLocKey: String? get() = definedExternally; set(value) = definedExternally
     var titleLocArgs: String? get() = definedExternally; set(value) = definedExternally
-    @nativeGetter
-    operator fun get(key: String): String?
-    @nativeSetter
-    operator fun set(key: String, value: String?)
 }
-external interface MessagingPayload {
+external class MessagingPayload {
     var data: admin.messaging.DataMessagePayload? get() = definedExternally; set(value) = definedExternally
     var notification: admin.messaging.NotificationMessagePayload? get() = definedExternally; set(value) = definedExternally
 }
-external interface MessagingOptions {
+
+external class MessagingOptions {
     var dryRun: Boolean? get() = definedExternally; set(value) = definedExternally
     var priority: String? get() = definedExternally; set(value) = definedExternally
     var timeToLive: Number? get() = definedExternally; set(value) = definedExternally
@@ -161,7 +160,7 @@ external interface MessagingTopicManagementResponse {
     var successCount: Number
 //    var errors: Array<admin.FirebaseArrayIndexError>
 }
-external interface Messaging {
+external class Messaging {
     var app: admin.app.App
 //    fun send(message: TokenMessage, dryRun: Boolean? = definedExternally /* null */): Promise<String>
 //    fun send(message: TopicMessage, dryRun: Boolean? = definedExternally /* null */): Promise<String>

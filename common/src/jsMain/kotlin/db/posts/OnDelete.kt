@@ -1,6 +1,6 @@
 package db.posts
 
-import db.FirebaseDbRefs.REF_POSTS
+import features.posts.REF_POSTS
 import functions
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asPromise
