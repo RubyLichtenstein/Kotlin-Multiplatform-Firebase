@@ -1,5 +1,4 @@
-
-install: gradle wrapper --gradle-version 4.10.1
+install: gradle wrapper --gradle-version 4.10.1 --stacktrace
 sudo: required
 
 language: android
