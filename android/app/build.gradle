@@ -93,3 +93,7 @@ dependencies {
 
 //    implementation 'androidx.core:core-ktx:1.0.0-rc02'
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10.1'
+}
