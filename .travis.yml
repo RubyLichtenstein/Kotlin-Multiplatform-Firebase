@@ -1,3 +1,5 @@
+install: gradle wrapper --gradle-version 4.10.1
+
 language: android
 jdk: oraclejdk8
 env:
@@ -26,4 +28,4 @@ android:
 #  - mkdir -p "$ANDROID_HOME/licenses"
 #  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
 script:
-  - ./gradlew wrapper build check
+  - ./gradlew build check
