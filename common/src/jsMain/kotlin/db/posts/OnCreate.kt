@@ -1,10 +1,10 @@
 package db.posts
 
 import features.posts.REF_POSTS
-import functions
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.asPromise
 import kotlinx.coroutines.async
+import lib.sendDataNotificationToTopic
 import ts2kt_firebase_admin.document
 
 fun dbPostsOnCreate(): dynamic {
@@ -17,6 +17,6 @@ fun dbPostsOnCreate(): dynamic {
 }
 
 suspend fun sendNewPostNotification() {
-
+    sendDataNotificationToTopic("a", "a")
 }
 
