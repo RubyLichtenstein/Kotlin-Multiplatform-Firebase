@@ -1,0 +1,64 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+  	function existingData() {
+      return resource.data
+    }
+
+    function incomingData() {
+      return request.resource.data
+    }
+
+    function currentUser() {
+      return request.auth
+    }
+
+  	function isSignedIn() {
+      return currentUser() != null;
+    }
+
+    function isGroupMember(userId, groupId) {
+      return userId in get(/databases/$(database)/documents/groups/$(groupId)).data.membersIds;
+    }
+
+    function getChatType(chatId) {
+      return get(/databases/$(database)/documents/chats/$(chatId)).data.type;
+    }
+
+    function isP2PChatMember(userId, chatId) {
+      return userId in get(/databases/$(database)/documents/chats/$(chatId)).data.members;
+    }
+
+    // chats rules
+    match /chats/{chatId} {
+      allow read: if isSignedIn() && isGroupMember(currentUser().uid, chatId) && getChatType() == "group";
+      allow read: if isSignedIn() && isP2PChatMember(currentUser().uid, chatId) && getChatType() == "P2P";
+      allow create: if isSignedIn();
+    }
+    match /chats/{chatId}/{chat=**} {
+        allow read: if isSignedIn() && isGroupMember(currentUser().uid, chatId) && getChatType() == "group";
+        allow read: if isSignedIn() && isP2PChatMember(currentUser().uid, chatId) && getChatType() == "P2P";
+        allow create: if isSignedIn();
+    }
+
+    // group_posts rules
+    match /group_posts/{postId=**} {
+      allow read, write: if isSignedIn();
+    }
+
+    // groups rules
+    match /groups/{groupId=**} {
+      allow read, write: if isSignedIn();
+    }
+
+    // users rules
+    match /users/{userId=**} {
+      allow read, write: if isSignedIn();
+    }
+
+    // match /{document=**} {
+    //   allow read;
+    //   allow write;
+    // }
+  }
+}

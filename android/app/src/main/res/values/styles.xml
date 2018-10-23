@@ -1,0 +1,53 @@
+<resources>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/primaryLightColor</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <!--<item name="colorPrimaryLight">@color/primaryLightColor</item>-->
+        <!--<item name="colorSecondary">@color/secondaryColor</item>-->
+        <!--<item name="colorSecondaryLight">@color/secondaryLightColor</item>-->
+        <!--<item name="colorSecondaryDark">@color/secondaryDarkColor</item>-->
+        <!--<item name="scrimBackground">@color/mtrl_scrim_color</item>-->
+        <!--<item name="snackbarButtonStyle">?attr/borderlessButtonStyle</item>-->
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+    </style>
+
+    <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <!-- The launcher theme. It sets the main window background to the splash_screen drawable -->
+    <style name="OnBoardingTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="FriendsListItemText">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+</resources>

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "debug": "outconnect-2b63a",
+    "release": "tandoo-release"
+  }
+}

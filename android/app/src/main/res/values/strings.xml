@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">TanDoo</string>
+    <string name="default_channel" translatable="false">default_channel</string>
+</resources>

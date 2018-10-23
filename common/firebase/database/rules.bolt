@@ -1,0 +1,115 @@
+// approval_requests
+
+path /approval_requests {
+    read() { isAdmin() }
+}
+
+path /approval_requests/{userId} {
+    write() { (isCurrentUser(userId) && this == userId) || isAdmin() }
+}
+
+// institutions
+
+path /groups {
+    read() { isSignedIn() }
+    write() { isSignedIn() }
+}
+
+// institutions_collection
+
+path /institutions_collection {
+    read() { isSignedIn() }
+    write() { isSignedIn() }
+}
+
+path /living_place_collection {
+    read() { isSignedIn() }
+    write() { isSignedIn() }
+}
+
+
+// neighborhoods
+
+path /neighborhoods {
+    read() { isSignedIn() }
+    write() { isSignedIn() }
+}
+
+path /users/{userId} {
+    read() { isSignedIn() }
+    write() { isCurrentUser(userId) || isAdmin() }
+}
+
+//path /users/{userId}/id {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/name {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/email {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/gender {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/notificationToken {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/facebookPictureUrl {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+//path /users/{userId}/groupIds {
+//    read() { isSignedIn() }
+//    write() { isCurrentUser(userId) || isAdmin() }
+//}
+
+path /users/{userId}/chats {
+    read() { isCurrentUser(userId) }
+    write() { isSignedIn() }
+}
+
+path /users/{userId}/admin {
+//    read() { isCurrentUser(userId) }
+//    write() { isAdmin() }
+    validate() { isAdmin() || this == false }
+}
+
+path /users/{userId}/approved {
+//    read() { isCurrentUser(userId) }
+//    write() { isAdmin() }
+    validate() { isAdmin() || this == false }
+}
+
+// Helper functions
+
+isAdmin() {
+    prior(root).users[auth.uid].admin == true
+}
+
+isApproved() {
+    prior(root).users[auth.uid].approved == true
+}
+
+isSignedIn() {
+    auth != null
+}
+
+isCurrentUser(userId) {
+    isSignedIn() && userId == auth.uid
+}
+
+isGroupMember(groupId, userId) {
+    prior(root).groups[groupId].membersIds[userId] != null
+}

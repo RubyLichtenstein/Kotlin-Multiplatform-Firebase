@@ -1,0 +1,14 @@
+{
+  "name": "database",
+  "description": "database related stuff",
+  "scripts": {
+    "build": "firebase-bolt rules.bolt",
+    "version": "1.0.0-alpha1"
+  },
+  "dependencies": {
+    "firebase-bolt": "^0.8.4",
+    "firebase-functions": "^1.0.3",
+    "npm": "^6.2.0"
+  },
+  "private": true
+}

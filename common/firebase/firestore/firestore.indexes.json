@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    {
+      "collectionId": "messages",
+      "fields": [
+        {
+          "fieldPath": "deleted",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "mode": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "log",
+      "fields": [
+        {
+          "fieldPath": "priority",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "uid",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "mode": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        {
+          "fieldPath": "deleted",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "mode": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}

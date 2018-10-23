@@ -1,0 +1,41 @@
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:4.0.1'
+        classpath "io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0.RC8"
+
+    }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC8"
+}
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+
+detekt {
+    version = "1.0.0.RC8"
+    defaultProfile {
+        input = file("app/src/main/java")
+        filters = ".*/resources/.*,.*/build/.*"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
