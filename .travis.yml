@@ -26,4 +26,4 @@ android:
 #  - mkdir -p "$ANDROID_HOME/licenses"
 #  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
 script:
-  - ./gradlew build check
+  - ./gradlew wrapper build check
