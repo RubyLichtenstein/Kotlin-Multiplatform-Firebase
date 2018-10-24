@@ -1,4 +1,4 @@
-package rubylich.ktmp.repo
+package rubylich.ktmp.lib
 
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskCompletionSource

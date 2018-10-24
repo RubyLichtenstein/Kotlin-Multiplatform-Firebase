@@ -47,6 +47,7 @@ dependencies {
     def koin_version = '1.0.0'
 
     implementation project(':common')
+    implementation project(':common-client')
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"

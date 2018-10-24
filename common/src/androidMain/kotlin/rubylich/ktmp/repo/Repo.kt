@@ -1,6 +1,7 @@
 package rubylich.ktmp.repo
 
 import com.google.firebase.firestore.FirebaseFirestore
+import rubylich.ktmp.lib.await
 
 actual abstract class Repo<T : Any> actual constructor(
     ref: String,
