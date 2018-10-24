@@ -92,13 +92,11 @@ external interface WebpushNotification {
     var body: String? get() = definedExternally; set(value) = definedExternally
     var icon: String? get() = definedExternally; set(value) = definedExternally
 }
-
-external class DataMessagePayload : Json {
-    override operator fun set(propertyName: String, value: Any?)
-
-    override operator fun get(propertyName: String): String?
-//    @nativeSetter
-//    operator fun set(key: String, value: String)
+external class DataMessagePayload {
+    @nativeGetter
+    operator fun get(key: String): String?
+    @nativeSetter
+    operator fun set(key: String, value: String)
 }
 external class NotificationMessagePayload {
     var tag: String? get() = definedExternally; set(value) = definedExternally

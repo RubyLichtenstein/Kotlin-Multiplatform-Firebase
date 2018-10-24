@@ -22,6 +22,7 @@ suspend fun sendDataNotificationToTopic(
 
     val messagePayload = MessagingPayload()
     val dataMessagePayload = DataMessagePayload()
+
     messagePayload.data = dataMessagePayload
 
     return Messaging().sendToTopic(topic, messagePayload, options).await()
