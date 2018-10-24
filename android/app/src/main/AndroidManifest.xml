@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rubylichtenstein.outconnect">
+    package="com.rubylich.ktmp">
 
     <application
-        android:name=".app.MyApplication"
+        android:name="com.rubylich.ktmp.app.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_android_black_24dp"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".notifications.service.MyFirebaseMessagingService"
+            android:name="com.rubylich.ktmp.notifications.service.MyFirebaseMessagingService"
             android:exported="false"
             android:permission="">
             <intent-filter>
@@ -30,7 +30,13 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_channel" />
 
-        <activity android:name=".PostsActivity"></activity>
+        <activity android:name="com.rubylich.ktmp.PostsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

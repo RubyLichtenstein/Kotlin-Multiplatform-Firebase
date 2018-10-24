@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "predeploy": [
+//      "../../gradlew common:compileKotlinJs",
+//      "../../gradlew common:copyCommonJsFirebaseModules",
+//      "../../gradlew common:coroutinesToLocalModule"
+    ],
+    "source": "functions"
+  },
+  //  "database": {
+  //    "rules": "database/rules.json",
+  //    "predeploy": [
+  //      "npm --prefix ./database run build"
+  //    ],
+  //    "source": "database"
+  //  },
+  "firestore": {
+    "rules": "firestore/firestore.rules",
+    "indexes": "firestore/firestore.indexes.json"
+  }
+}
