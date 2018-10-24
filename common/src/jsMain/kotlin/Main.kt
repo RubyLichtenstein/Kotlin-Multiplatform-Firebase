@@ -1,6 +1,6 @@
-import db.posts.dbPostsOnCreate
-import db.posts.dbPostsOnDelete
-import lib.adminInitializeApp
+import rubylich.ktmp.functions.db.posts.dbPostsOnCreate
+import rubylich.ktmp.functions.db.posts.dbPostsOnDelete
+import rubylich.ktmp.functions.lib.adminInitializeApp
 
 external fun require(module: String): dynamic
 external val exports: dynamic
