@@ -1,19 +1,20 @@
 #matrix:
 #  include:
+install: gradle wrapper
 
-     language: java
-     jdk:
-       - oraclejdk8
+language: java
+jdk:
+  - oraclejdk8
 
-     before_install:
-       - chmod +x gradlew
+before_install:
+  - chmod +x gradlew
 
-     before_script:
-       - chmod +x gradlew
+before_script:
+  - chmod +x gradlew
 
-     script:
-       - ./gradlew common:build
-       - ./gradlew common-client:build
+script:
+  - ./gradlew common:build
+  - ./gradlew common-client:build
 
 #     after_success:
 #       - bash <(curl -s https://codecov.io/bash)
