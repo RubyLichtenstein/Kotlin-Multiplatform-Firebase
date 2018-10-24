@@ -13,19 +13,19 @@ buildscript {
     }
 }
 
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC8"
-}
-apply plugin: 'io.gitlab.arturbosch.detekt'
+//plugins {
+//    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC8"
+//}
+//apply plugin: 'io.gitlab.arturbosch.detekt'
 
 
-detekt {
-    version = "1.0.0.RC8"
-    defaultProfile {
-        input = file("app/src/main/java")
-        filters = ".*/resources/.*,.*/build/.*"
-    }
-}
+//detekt {
+//    version = "1.0.0.RC8"
+//    defaultProfile {
+//        input = file("app/src/main/java")
+//        filters = ".*/resources/.*,.*/build/.*"
+//    }
+//}
 
 allprojects {
     repositories {
