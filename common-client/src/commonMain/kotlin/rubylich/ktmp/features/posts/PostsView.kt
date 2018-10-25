@@ -5,14 +5,18 @@ import kotlinx.coroutines.channels.BroadcastChannel
 expect class PostsView : IPostsView {
     override fun showPosts(posts: List<Post>)
     override fun showAddPostDialog()
-    override fun addPostClick(): BroadcastChannel<Unit>
+    override fun addPostButtonClick(): BroadcastChannel<Unit>
     override fun addPostContent(): BroadcastChannel<String>
     override fun showError(error: Throwable)
+    override fun refresh(): BroadcastChannel<Unit>
+    override fun showRefresh(show: Boolean)
 }
 
 interface IPostsView : BaseView {
     fun showPosts(posts: List<Post>)
     fun showAddPostDialog()
-    fun addPostClick(): BroadcastChannel<Unit>
+    fun addPostButtonClick(): BroadcastChannel<Unit>
+    fun refresh(): BroadcastChannel<Unit>
     fun addPostContent(): BroadcastChannel<String>
+    fun showRefresh(show: Boolean)
 }

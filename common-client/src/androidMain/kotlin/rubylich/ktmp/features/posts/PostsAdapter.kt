@@ -17,8 +17,7 @@ class PostsAdapter() :
     val posts = SortedList<Post>(Post::class.java,
         object : SortedListAdapterCallback<Post>(this) {
             override fun compare(a: Post, b: Post): Int {
-                //todo sort by date
-                return a.content.compareTo(b.content)
+                return a.id.compareTo(b.id)
             }
 
             override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {

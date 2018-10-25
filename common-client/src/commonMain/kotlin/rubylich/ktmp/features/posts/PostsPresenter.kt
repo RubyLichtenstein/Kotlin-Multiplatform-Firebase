@@ -1,12 +1,9 @@
 package rubylich.ktmp.features.posts
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.channels.consume
 import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.launch
 import rubylich.ktmp.launchAndCatch
 import kotlin.coroutines.CoroutineContext
+import kotlin.random.Random
 
 class PostsPresenter(
     private val uiContext: CoroutineContext,
@@ -14,13 +11,19 @@ class PostsPresenter(
     private val postsView: IPostsView
 ) {
     fun onCreate() {
+        showPosts()
+
         launchAndCatch(uiContext, postsView::showError) {
-            showPosts()
+            postsView
+                .refresh()
+                .consumeEach {
+                    showPosts()
+                }
         }
 
         launchAndCatch(uiContext, postsView::showError) {
             postsView
-                .addPostClick()
+                .addPostButtonClick()
                 .consumeEach {
                     postsView.showAddPostDialog()
                 }
@@ -30,9 +33,8 @@ class PostsPresenter(
             postsView
                 .addPostContent()
                 .consumeEach {
-                    GlobalScope.launch {
-                        addPost(Post("kuku", it))
-                    }.start()
+                    addPost(Post(Random.nextBytes(8).toString(), it))
+                    showPosts()
                 }
         }
     }
@@ -41,8 +43,11 @@ class PostsPresenter(
 
     }
 
-    suspend fun showPosts() {
-        postsView.showPosts(postsRepo.getAll())
+    fun showPosts() {
+        launchAndCatch(uiContext, postsView::showError) {
+            postsView.showPosts(postsRepo.getAll())
+            postsView.showRefresh(false)
+        }
     }
 
     suspend fun addPost(post: Post) {

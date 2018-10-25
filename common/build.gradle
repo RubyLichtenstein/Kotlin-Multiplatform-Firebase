@@ -3,9 +3,9 @@ apply plugin: 'kotlin-multiplatform'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 
-configurations {
-    compileClasspath
-}
+//configurations {
+//    compileClasspath
+//}
 
 buildscript {
     repositories {
@@ -114,8 +114,8 @@ kotlin {
         }
     }
 }
-def functionsPath = "${rootDir}/common/firebase/functions/kotlin2js"
 
+def functionsPath = "${rootDir}/common/firebase/functions/kotlin2js"
 
 task coroutinesToLocalModule << {
     ant.replaceregexp(match: "'kotlinx-coroutines-core'", replace: "'./kotlinx-coroutines-core'", flags: 'g', byline: true) {

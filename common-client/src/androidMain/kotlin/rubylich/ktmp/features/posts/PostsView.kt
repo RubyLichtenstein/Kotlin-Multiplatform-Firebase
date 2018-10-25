@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +14,14 @@ import com.example.testmodule.R
 import kotlinx.android.synthetic.main.add_post_dialog_layout.view.*
 import kotlinx.android.synthetic.main.posts_view_layout.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 
 actual class PostsView : Fragment(), IPostsView {
 
-    val dialogContentBroadcast = ConflatedBroadcastChannel<String>()
-
-    lateinit var postsPresenter: PostsPresenter
+    private val dialogContentBroadcast = ConflatedBroadcastChannel<String>()
+    private val adapter = PostsAdapter()
+    private lateinit var postsPresenter: PostsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,10 @@ actual class PostsView : Fragment(), IPostsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        list.adapter = adapter
+        list.layoutManager = LinearLayoutManager(view.getContext())
+
         postsPresenter.onCreate()
     }
 
@@ -47,7 +50,9 @@ actual class PostsView : Fragment(), IPostsView {
         postsPresenter.onDestroy()
     }
 
-    actual override fun showPosts(posts: List<Post>) {}
+    actual override fun showPosts(posts: List<Post>) {
+        adapter.posts.addAll(posts)
+    }
 
     actual override fun showAddPostDialog() {
         val dialogView =
@@ -68,16 +73,24 @@ actual class PostsView : Fragment(), IPostsView {
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
 
-    actual override fun addPostClick(): BroadcastChannel<Unit> {
-        val conflatedBroadcastChannel = ConflatedBroadcastChannel<Unit>()
-
-        addPostButton.setOnClickListener {
-            conflatedBroadcastChannel.offer(Unit)
+    actual override fun addPostButtonClick(): BroadcastChannel<Unit> =
+        ConflatedBroadcastChannel<Unit>().apply {
+            addPostButton.setOnClickListener {
+                offer(Unit)
+            }
         }
-
-        return conflatedBroadcastChannel
-    }
 
     actual override fun addPostContent(): BroadcastChannel<String> = dialogContentBroadcast
     actual override fun showError(error: Throwable) {}
+
+    actual override fun refresh(): BroadcastChannel<Unit> =
+        ConflatedBroadcastChannel<Unit>().apply {
+            postsSwipeRefresh.setOnRefreshListener {
+                offer(Unit)
+            }
+        }
+
+    actual override fun showRefresh(show: Boolean) {
+        postsSwipeRefresh.isRefreshing = show
+    }
 }
