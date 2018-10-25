@@ -6,10 +6,10 @@ import rubylich.ktmp.lib.await
 actual abstract class Repo<T : Any> actual constructor(
     ref: String,
     val parser: Parser<T>
-) {
+) : IRepo<T> {
     val collection = FirebaseFirestore.getInstance().collection(ref)
 
-    actual suspend fun get(id: String): T {
+    actual override suspend fun get(id: String): T {
         val documentSnapshot = collection
             .document(id)
             .get()
@@ -18,27 +18,27 @@ actual abstract class Repo<T : Any> actual constructor(
         return parser.parse(documentSnapshot)
     }
 
-    actual suspend fun set(id: String, t: T) {
+    actual override suspend fun set(id: String, t: T) {
         collection
             .document(id)
             .set(t)
             .await()
     }
 
-    actual suspend fun delete(id: String) {
+    actual override suspend fun delete(id: String) {
         collection
             .document(id)
             .delete()
             .await()
     }
 
-    actual suspend fun update(id: String, field: String, value: Any) {
+    actual override suspend fun update(id: String, field: String, value: Any) {
         collection
             .document(id)
             .update(field, value)
             .await()
     }
 
-    actual suspend fun getAll(): List<T> =
+    actual override suspend fun getAll(): List<T> =
         collection.get().await().documents.map { parser.parse(it) }
 }

@@ -89,6 +89,7 @@ kotlin {
         androidMain {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
                 implementation 'com.google.firebase:firebase-firestore:17.1.0'
                 implementation 'com.github.brotoo25:firestore-coroutines:0.0.4'
