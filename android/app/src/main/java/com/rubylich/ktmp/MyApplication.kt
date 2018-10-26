@@ -1,4 +1,4 @@
-package com.rubylich.ktmp.app
+package com.rubylich.ktmp
 
 import android.app.Activity
 import android.app.Application
