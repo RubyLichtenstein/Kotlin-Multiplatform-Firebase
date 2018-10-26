@@ -5,8 +5,6 @@ import android.content.Context
 import android.content.Intent
 import com.rubylich.ktmp.R
 import com.rubylich.ktmp.notifications.PushNotificationChannel
-import rubylich.ktmp.features.posts.NotificationData.KEY_BODY
-import rubylich.ktmp.features.posts.NotificationData.KEY_TITLE
 
 
 abstract class PushNotificationItem(
@@ -14,8 +12,8 @@ abstract class PushNotificationItem(
     val data: Map<String, String>
 ) {
     open fun smallIcon(): Int = R.drawable.ic_android_black_24dp
-    open fun title() = data[KEY_TITLE]!!
-    open fun body() = data[KEY_BODY]!!
+    abstract fun title(): String
+    abstract fun body(): String
     open fun runAfterExecution() {}
     open fun channel(): PushNotificationChannel = PushNotificationChannel.Default()
     open fun drop(): Boolean = false
@@ -28,6 +26,14 @@ abstract class PushNotificationItem(
         data: Map<String, String>,
         context: Context
     ) : PushNotificationItem(context, data) {
+        override fun title(): String {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun body(): String {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         override fun drop(): Boolean = true
 
         override fun id() = 0

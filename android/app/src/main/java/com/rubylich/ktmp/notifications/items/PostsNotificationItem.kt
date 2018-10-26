@@ -13,18 +13,18 @@ class PostsNotificationItem(
     data: Map<String, String>,
     private val notificationsUnreadMessagesCounter: NotificationsUnreadMessagesCounter
 ) : PushNotificationItem(context, data) {
-
     private val notificationData =
         Klaxon().parse<PostsNotification.Data>(Klaxon().toJsonString(data))!!
 
     override fun id(): Int = notificationData.id.hashCode()
 
-    override fun title() =
-        data[NotificationData.KEY_TITLE]!! +
-                " ${notificationsUnreadMessagesCounter.getUnreadMessagesCounter(
-                    context,
-                    PostsNotification.ID
-                )}"
+    override fun body(): String = notificationData.postContent
+
+    override fun title() = notificationData.postContent +
+            " ${notificationsUnreadMessagesCounter.getUnreadMessagesCounter(
+                context,
+                PostsNotification.ID
+            )}"
 
     override fun runAfterExecution() {
         super.runAfterExecution()

@@ -17,7 +17,8 @@ fun dbPostsOnCreate(): dynamic {
             sendDataNotificationToTopic(
                 topic = PostsNotification.TOPIC,
                 payload = PostsNotification.Data(
-                    post = Post("id", "safafs")
+                    postId = "id",
+                    postContent = "safafs"
                 )
             )
         }
