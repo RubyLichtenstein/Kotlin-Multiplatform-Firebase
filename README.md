@@ -1,4 +1,7 @@
 # Kotlin-multiplatform-firebase
+
+[![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase)
+
 Multiplatform android ios and node(firebase functions)
 
 This project demonstrainting Kotlin multiplatform with android and ios client and firebase as backend
