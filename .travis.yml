@@ -23,7 +23,7 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-  - ./gradlew common:build
+  - ./gradlew common:build --stacktrace
 
 
 #  - ./gradlew common-client:build
