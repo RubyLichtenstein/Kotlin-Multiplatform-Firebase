@@ -31,3 +31,4 @@ hs_err_pid*
 local.properties
 /android/app/src/release/google-services.json
 /android/app/src/debug/google-services.json
+!/gradle/wrapper/gradle-wrapper.jar
