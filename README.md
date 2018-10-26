@@ -1,5 +1,15 @@
 # Kotlin Multiplatform - Android/iOS/Web/Node.js
 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" width="50">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Android_robot_2014.svg" width="50">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Apple_iOS_logo.svg" width="50">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="50">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" width="70">
+  <img src=" https://upload.wikimedia.org/wikipedia/commons/4/42/Firebase_logo1.png" width="70">
+
+</p>
+
 [![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase)
 
 Simple app demonstrating how kotlin is everywhere 
