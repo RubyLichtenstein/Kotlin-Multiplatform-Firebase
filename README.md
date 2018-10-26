@@ -33,6 +33,9 @@ View expectitions
 ## Build and run 
 
 # Setup
+
+inable kotlin 1.3
+
 https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
 #### Firebase Functions (Server)
