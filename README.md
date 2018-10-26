@@ -10,24 +10,39 @@ Multiplatform Android/iOS/Web/Node.js
 
 ## Project Architecture
 
-### Common Module - Client/Server 
-### Common-Client Module - Android/iOS/Web
+### `common-all` Module
 
-### Common: 
-- Models 
-- Repository 
+#### Share code between all clients (Android/iOS/Web) and server (Node.Js).
 
-### Common Client: 
-Presentation impl 
-View expectations 
 
-### Node.js (Firebase functions) 
+#### `common`
+- Models.
+- Repository Expectation.
 
-### Android Application 
+#### Platform spsific code.
 
-### iOS Application 
+#### `common-js`
+- Repository Actual.
+#### `common-android`
+- Repository Actual.
+#### `common-ios`
+- Repository Actual.
 
-### Web Application 
+
+### `common-client` Module
+#### Share code between all clients (Android/iOS/Web)
+
+#### `common`
+- Presenters.
+- View Expectation.
+
+#### `common-js`
+- View Actual.
+#### `common-android`
+- View Actual.
+#### `common-ios`
+- View Actual.
+
 
 ## Build and run 
 
