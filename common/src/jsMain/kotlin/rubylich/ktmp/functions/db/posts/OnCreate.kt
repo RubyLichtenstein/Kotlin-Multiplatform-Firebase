@@ -12,25 +12,23 @@ import rubylich.ktmp.functions.lib.sendDataNotificationToTopic
 import rubylich.ktmp.functions.ts2kt_firebase_admin.document
 import kotlin.js.Promise
 
-fun dbPostsOnCreate(): Promise<Any> {
-    return document("/$REF_POSTS/{id}")
-        .onCreate { snapshot, context ->
-            val postId = context.params["id"] as String
-            val postsRepo = PostsRepo()
+fun dbPostsOnCreate(): Promise<Any> = document("/$REF_POSTS/{id}")
+    .onCreate { snapshot, context ->
+        val postId = context.params["id"] as String
+        val postsRepo = PostsRepo()
 
-            GlobalScope.promise {
-                val post: Post = postsRepo.get(postId)
+        GlobalScope.promise {
+            val post: Post = postsRepo.get(postId)
 
-                sendDataNotificationToTopic(
-                    topic = PostsNotification.TOPIC,
-                    payload = PostsNotification.Data(
-                        postId = post.id,
-                        postContent = post.content
-                    )
-                ).await()
-            }
+            sendDataNotificationToTopic(
+                topic = PostsNotification.TOPIC,
+                payload = PostsNotification.Data(
+                    postId = post.id,
+                    postContent = post.content
+                )
+            ).await()
         }
-}
+    }
 
 
 

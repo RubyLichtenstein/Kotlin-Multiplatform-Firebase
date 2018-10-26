@@ -112,7 +112,7 @@ external class NotificationMessagePayload {
     var titleLocKey: String? get() = definedExternally; set(value) = definedExternally
     var titleLocArgs: String? get() = definedExternally; set(value) = definedExternally
 }
-external class MessagingPayload {
+external object MessagingPayload {
     var data: admin.messaging.DataMessagePayload? get() = definedExternally; set(value) = definedExternally
     var notification: admin.messaging.NotificationMessagePayload? get() = definedExternally; set(value) = definedExternally
 }
@@ -158,7 +158,7 @@ external interface MessagingTopicManagementResponse {
     var successCount: Number
 //    var errors: Array<admin.FirebaseArrayIndexError>
 }
-external class Messaging {
+external object Messaging {
     var app: admin.app.App
 //    fun send(message: TokenMessage, dryRun: Boolean? = definedExternally /* null */): Promise<String>
 //    fun send(message: TopicMessage, dryRun: Boolean? = definedExternally /* null */): Promise<String>
