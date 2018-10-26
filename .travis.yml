@@ -7,7 +7,8 @@ before_install:
 install: gradle wrapper
 
 language: java
-jdk:˚
+
+jdk:
   - oraclejdk8
 
 before_script:
