@@ -1,28 +1,27 @@
-# Kotlin-multiplatform-firebase
+# Kotlin Multiplatform - Android/iOS/Web/Node.js
 
 [![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase)
 
-Multiplatform android ios and node(firebase functions)
+Simple app demonstrating how kotlin is everywhere 
 
-This project demonstrainting Kotlin multiplatform with android and ios client and firebase as backend
+Multiplatform Android/iOS/Web/Node.js
 
-Android and ios written in kotlin
-Firebase functions in kotlin and transpiled to JS.
+## Kotlin Multiplatform
 
+## Project Architecture
 
-### Common - Client/Server 
-
-### Common Client - Android/iOS/Web
+### Common Module - Client/Server 
+### Common-Client Module - Android/iOS/Web
 
 ### Common: 
-Models 
-Repo
+- Models 
+- Repository 
 
 ### Common Client: 
 Presentation impl 
-View expectitions 
+View expectations 
 
-### Server 
+### Node.js (Firebase functions) 
 
 ### Android Application 
 
@@ -32,22 +31,23 @@ View expectitions
 
 ## Build and run 
 
-# Setup
+### Clone and setup 
 
-enable kotlin 1.3
+ - enable kotlin 1.3
 
 https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
-#### Firebase Functions (Server)
+#### Running the Node.js App (Firebase functions)
 
 1. `cd common/firebase/functions`
 2. ` npm install`
 3. `./gradlew common:firebaseDeploy`
 
+#### Running the Android app 
+//TODO
 
+#### Running the Web app 
+//TODO
 
-
-#### Android 
-
-
-#### iOS 
+## Libraries used in this project
+//TODO 
