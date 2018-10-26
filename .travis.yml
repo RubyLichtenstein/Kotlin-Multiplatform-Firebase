@@ -3,8 +3,7 @@
 before_install:
   - chmod +x gradlew
 
-
-install: gradle wrapper
+#install: gradle wrapper
 
 language: java
 
