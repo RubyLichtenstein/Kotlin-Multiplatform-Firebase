@@ -2,6 +2,7 @@ package com.rubylich.ktmp.notifications
 
 import android.app.NotificationManager
 import android.content.Context
+import rubylich.ktmp.notifications.NotificationItemResolver
 import timber.log.Timber
 
 
@@ -14,7 +15,7 @@ class PushNotification(
         context: Context,
         data: Map<String, String>
     ) {
-        val resolvedNotification = resolver.resolve(context, data)
+        val resolvedNotification = resolver.resolve(data)
         if (resolvedNotification.drop()) {
             Timber.tag("PushNotification")
             Timber.d("$resolvedNotification drop")
