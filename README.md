@@ -30,13 +30,21 @@ View expectitions
 
 ### Web Application 
 
-## How to build and run 
+## Build and run 
 
 # Setup
 https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
+#### Firebase Functions (Server)
+
+1. `cd common/firebase/functions`
+2. ` npm install`
+3. `./gradlew common:firebaseDeploy`
+
+
+
+
 #### Android 
 
-#### Server 
 
 #### iOS 
