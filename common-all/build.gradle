@@ -65,14 +65,15 @@ android {
     }
 }
 
-def kotlin2jsOutputPath = "build/outputs/kotlin2js"
+def kotlinJsOutputPath = "build/outputs/kotlinJs"
+def firebaseFunctionsPath = "../firebase/functions/kotlin2js"
 
 kotlin {
     targets {
         fromPreset(presets.js, 'js') {
             compileKotlinJs.kotlinOptions {
                 moduleKind = "commonjs"
-                outputFile = "$kotlin2jsOutputPath/index.js"
+                outputFile = "$kotlinJsOutputPath/index.js"
                 metaInfo = true
                 sourceMap = true
             }
@@ -114,13 +115,7 @@ kotlin {
                 implementation 'com.android.support.constraint:constraint-layout:1.1.3'
                 implementation "com.android.support:cardview-v7:28.0.0"
                 implementation "com.android.support:design:28.0.0"
-//                implementation "org.jetbrains.anko:anko-commons:0.10.7"
-//                implementation "org.jetbrains.anko:anko:0.10.7"
-//                implementation "org.jetbrains.anko:anko-sdk25:0.10.7" // sdk15, sdk19, sdk21, sdk23 are also available
-//                implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.7"
-
-//                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
-            }
+           }
         }
 
         androidTest {
@@ -132,32 +127,31 @@ kotlin {
     }
 }
 
-def functionsPath = "${rootDir}/common/firebase/functions/kotlin2js"
-
-//task coroutinesToLocalModule << {
-//    ant.replaceregexp(match: "'kotlinx-coroutines-core'", replace: "'./kotlinx-coroutines-core'", flags: 'g', byline: true) {
-//        fileset(dir: "$functionsPath", includes: 'index.js')
-//    }
-//}
+clean.doFirst {
+    delete "${rootDir}/firebase/functions/kotlin2js"
+}
 
 task copyCommonJsFirebaseModules(type: Copy) {
-    from "${rootDir}/common/$kotlin2jsOutputPath"
-    into functionsPath
+    from kotlinJsOutputPath
+    print(firebaseFunctionsPath)
+    into firebaseFunctionsPath
 }
 
-task buildFirebaseFunctions() {
-}
+task buildFirebaseFunctions() {}
 
 task firebaseDeploy(type: Exec) {
-    workingDir './firebase'
+    workingDir '../firebase'
     commandLine 'firebase', 'deploy'
 }
 
 task firebaseDeployLocaly(type: Exec) {
-    workingDir './firebase'
+    workingDir '../firebase'
     commandLine 'firebase', 'functions:shell'
 }
 
+buildFirebaseFunctions.dependsOn(copyCommonJsFirebaseModules)
 firebaseDeployLocaly.dependsOn(copyCommonJsFirebaseModules)
 firebaseDeploy.dependsOn(copyCommonJsFirebaseModules)
 copyCommonJsFirebaseModules.dependsOn(compileKotlinJs)
+
+

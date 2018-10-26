@@ -45,6 +45,7 @@ class PostsPresenter(
 
     fun showPosts() {
         launchAndCatch(uiContext, postsView::showError) {
+            postsView.showRefresh(true)
             postsView.showPosts(postsRepo.getAll())
             postsView.showRefresh(false)
         }

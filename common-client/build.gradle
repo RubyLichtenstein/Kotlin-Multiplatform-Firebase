@@ -61,7 +61,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation project(":common")
+                implementation project(":common-all")
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
 //                implementation "org.koin:koin-core:1.0.1"//todo check if working
@@ -88,7 +88,7 @@ kotlin {
 
         androidMain {
             dependencies {
-                implementation project(":common")
+                implementation project(":common-all")
                 implementation 'com.beust:klaxon:3.0.1'
                 implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
