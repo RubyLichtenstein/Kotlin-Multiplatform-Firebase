@@ -9,6 +9,6 @@ val firebaseAdmin by lazy { require("firebase-admin") }
 
 fun main(args: Array<String>) {
     adminInitializeApp()
-    exports.dbPostsOnDelete = dbPostsOnDelete()
+//    exports.dbPostsOnDelete = dbPostsOnDelete()
     exports.dbPostsOnCreate = dbPostsOnCreate()
 }

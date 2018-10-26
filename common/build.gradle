@@ -128,12 +128,22 @@ task copyCommonJsFirebaseModules(type: Copy) {
     into functionsPath
 }
 
-task firebaseDeployDebug(type: Exec) {
+task buildFirebaseFunctions() {
+}
+
+task firebaseDeploy(type: Exec) {
     workingDir './firebase'
-    commandLine 'firebase', 'use', 'debug'
     commandLine 'firebase', 'deploy'
 }
 
-firebaseDeployDebug.dependsOn(coroutinesToLocalModule)
+task firebaseDeployLocaly(type: Exec) {
+    workingDir './firebase'
+    commandLine 'firebase', 'functions:shell'
+}
+
+buildFirebaseFunctions.dependsOn(coroutinesToLocalModule)
+firebaseDeployLocaly.dependsOn(coroutinesToLocalModule)
+firebaseDeploy.dependsOn(coroutinesToLocalModule)
+
 coroutinesToLocalModule.dependsOn(copyCommonJsFirebaseModules)
 copyCommonJsFirebaseModules.dependsOn(compileKotlinJs)

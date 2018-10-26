@@ -26,7 +26,6 @@ actual abstract class Repo<T : Any> actual constructor(
         collection.doc(id).update(field, value).await()
     }
 
-    //todo test
     actual override suspend fun getAll(): List<T> {
         return collection.get().await().docs.map { parser.parse(it) }
     }

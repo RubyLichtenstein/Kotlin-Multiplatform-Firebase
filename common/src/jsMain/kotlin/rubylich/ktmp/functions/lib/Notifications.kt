@@ -1,37 +1,37 @@
 package rubylich.ktmp.functions.lib
 
-import admin.messaging.*
 import firebaseAdmin
-import kotlinx.coroutines.await
 import kotlin.js.*
 
-fun defaultNotificationOptions(): MessagingOptions =
-    MessagingOptions().apply {
-        priority = "high"
-        timeToLive = 60 * 60 * 24
-    }
+fun defaultNotificationOptions() = json(
+    "priority" to "high",
+    "timeToLive" to 60 * 60 * 24
+)
 
-suspend fun sendDataNotificationToTopic(
+fun sendDataNotificationToTopic(
     topic: String,
     payload: Any,
-    options: MessagingOptions = defaultNotificationOptions()
-): MessagingTopicResponse {
+    options: Json = defaultNotificationOptions()
+): Promise<Unit> {
 
     val payloadJson = json("data" to payload)
-    val notificationMessagePayload = NotificationMessagePayload()
+    console.log(
+        "sendDataNotificationToTopic, topic: $topic, payload: ${JSON.stringify(
+            payload
+        )}, options: ${JSON.stringify(options)}"
+    )
 
-    val messagePayload = MessagingPayload()
-    val dataMessagePayload = DataMessagePayload()
-
-    messagePayload.data = dataMessagePayload
-
-    return Messaging().sendToTopic(topic, messagePayload, options).await()
+    return firebaseAdmin
+        .messaging().sendToTopic(topic, payloadJson, options)
+        .then { value ->
+            console.log("MessagingTopicResponse messageId: ${JSON.stringify(value)}");
+        }
 }
 
 fun sendDataNotificationToDevice(
     registrationToken: String,
     payload: Any,
-    options: MessagingOptions = defaultNotificationOptions()
+    options: Json = defaultNotificationOptions()
 ): Promise<Unit> {
     console.log(
         "sendDataNotificationToDevice, registrationToken: $registrationToken, payload: ${JSON.stringify(
