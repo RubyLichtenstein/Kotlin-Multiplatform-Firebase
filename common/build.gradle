@@ -134,11 +134,11 @@ kotlin {
 
 def functionsPath = "${rootDir}/common/firebase/functions/kotlin2js"
 
-task coroutinesToLocalModule << {
-    ant.replaceregexp(match: "'kotlinx-coroutines-core'", replace: "'./kotlinx-coroutines-core'", flags: 'g', byline: true) {
-        fileset(dir: "$functionsPath", includes: 'index.js')
-    }
-}
+//task coroutinesToLocalModule << {
+//    ant.replaceregexp(match: "'kotlinx-coroutines-core'", replace: "'./kotlinx-coroutines-core'", flags: 'g', byline: true) {
+//        fileset(dir: "$functionsPath", includes: 'index.js')
+//    }
+//}
 
 task copyCommonJsFirebaseModules(type: Copy) {
     from "${rootDir}/common/$kotlin2jsOutputPath"
@@ -158,9 +158,6 @@ task firebaseDeployLocaly(type: Exec) {
     commandLine 'firebase', 'functions:shell'
 }
 
-buildFirebaseFunctions.dependsOn(coroutinesToLocalModule)
-firebaseDeployLocaly.dependsOn(coroutinesToLocalModule)
-firebaseDeploy.dependsOn(coroutinesToLocalModule)
-
-coroutinesToLocalModule.dependsOn(copyCommonJsFirebaseModules)
+firebaseDeployLocaly.dependsOn(copyCommonJsFirebaseModules)
+firebaseDeploy.dependsOn(copyCommonJsFirebaseModules)
 copyCommonJsFirebaseModules.dependsOn(compileKotlinJs)
