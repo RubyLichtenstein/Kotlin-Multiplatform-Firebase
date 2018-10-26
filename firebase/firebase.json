@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "predeploy": [],
+    "source": "functions"
+  },
+  "firestore": {}
+}

@@ -1,3 +1,3 @@
 rootProject.name = 'kotlin-multiplatform-firebase'
 
-include 'common', 'common-client', 'android', 'android:app'
+include 'common-all', 'common-client', 'android', 'android:app'
