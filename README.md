@@ -8,6 +8,14 @@ Multiplatform Android/iOS/Web/Node.js
 
 ## Kotlin Multiplatform
 
+
+## Project Structure
+
+- `android` - Android app.
+- `common-all` - Multiplatform and Android library.
+- `common-client` - Multiplatform and Android library. 
+- `firebase` - Node.Js app.
+
 ## Project Architecture
 
 ### `common-all` Module
@@ -66,3 +74,12 @@ https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
 ## Libraries used in this project
 //TODO 
+
+
+## Resources
+
+### Kotlin Multiplatform
+//TODO
+
+### KotlinJs
+//TODO
