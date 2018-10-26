@@ -17,4 +17,6 @@ actual class PostsView : IPostsView {
     actual override fun refresh(): BroadcastChannel<Unit> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    actual override fun showRefresh(show: Boolean) {}
 }

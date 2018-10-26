@@ -61,8 +61,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation 'com.beust:klaxon:3.0.1'
-
                 implementation project(":common")
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"

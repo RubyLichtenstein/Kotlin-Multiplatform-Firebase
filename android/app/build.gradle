@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "0.0.1"
         testInstrumentationRunner "test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
+//        multiDexEnabled true
     }
 
     buildTypes {
@@ -53,11 +53,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    implementation 'com.google.android.gms:play-services-auth:16.0.0'
-
     implementation "com.google.firebase:firebase-core:16.0.3"
     implementation "com.google.firebase:firebase-database:16.0.2"
-    implementation "com.google.firebase:firebase-auth:16.0.3"
     implementation "com.google.firebase:firebase-messaging:17.3.1"
     implementation 'com.google.firebase:firebase-firestore:17.1.0'
 
