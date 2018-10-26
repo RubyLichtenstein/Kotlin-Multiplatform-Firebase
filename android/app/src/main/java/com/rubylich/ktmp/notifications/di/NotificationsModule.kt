@@ -13,7 +13,6 @@ import org.koin.dsl.module.module
 fun notificationsModule(): Module = module {
     single { androidContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager }
     single { PushNotification(get(), get(), get()) }
-    single { NotificationTopicSubscriber(androidContext()) }
     single { NotificationItemResolverImpl(get()) as NotificationItemResolver }
     single { NotificationBuilderImpl() as NotificationBuilder }
     single { NotificationsUnreadMessagesCounter() }

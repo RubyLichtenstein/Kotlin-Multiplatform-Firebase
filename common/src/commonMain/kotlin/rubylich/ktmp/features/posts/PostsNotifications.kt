@@ -1,16 +1,5 @@
 package rubylich.ktmp.features.posts
 
-data class PostNotificationData(
-    val id: String,
-    val title: String,
-    val body: String,
-    val sound: String = "default",
-    val click_action: String,
-    val tag: String,
-    val groupId: String,
-    val groupName: String,
-    val fromId: String
-)
 
 object NotificationData {
     const val KEY_ID = "id"
@@ -18,10 +7,13 @@ object NotificationData {
     const val KEY_BODY = "body"
 }
 
-object NotificationTopics {
-    const val POSTS = "posts"
-}
+object PostsNotification {
+    const val TOPIC = "posts"
+    const val ID = "posts"
 
-object NotificationId {
-    const val POSTS = "posts"
+    data class Data(
+        val id: String = ID,
+        val post: Post,
+        val sound: String = "default"
+    )
 }

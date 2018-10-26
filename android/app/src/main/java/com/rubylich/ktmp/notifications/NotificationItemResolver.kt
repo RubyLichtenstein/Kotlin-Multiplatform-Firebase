@@ -3,7 +3,7 @@ package com.rubylich.ktmp.notifications
 import android.content.Context
 import com.rubylich.ktmp.notifications.items.*
 import rubylich.ktmp.features.posts.NotificationData.KEY_ID
-import rubylich.ktmp.features.posts.NotificationId
+import rubylich.ktmp.features.posts.PostsNotification
 
 interface NotificationItemResolver {
     fun resolve(context: Context, data: Map<String, String>): PushNotificationItem
@@ -15,8 +15,8 @@ class NotificationItemResolverImpl(private val notificationsUnreadMessagesCounte
         val id = data[KEY_ID]
         if (id != null) {
             return when (id) {
-                NotificationId.POSTS ->
-                    PostsNotification(
+                PostsNotification.ID ->
+                    PostsNotificationItem(
                         context,
                         data,
                         notificationsUnreadMessagesCounter

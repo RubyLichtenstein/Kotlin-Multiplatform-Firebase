@@ -32,7 +32,7 @@ abstract class PushNotificationItem(
 
         override fun id() = 0
 
-        override fun intent() = Intent(context, PostsNotification::class.java)
+        override fun intent() = Intent(context, PostsNotificationItem::class.java)
     }
 
     private fun defaultPendingIntent(intent: Intent, context: Context): PendingIntent {

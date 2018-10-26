@@ -9,6 +9,8 @@ import android.os.Build
 import com.rubylich.ktmp.notifications.di.notificationsModule
 import org.koin.android.ext.android.startKoin
 import org.koin.log.EmptyLogger
+import rubylich.ktmp.CommonApplication
+import rubylich.ktmp.features.posts.Notifications
 import timber.log.Timber
 
 
@@ -16,10 +18,11 @@ import timber.log.Timber
  * Created by rl98880 on 25/06/2018.
  */
 class MyApplication : Application() {
-    private var activeActivity: Activity? = null
+    private val application = CommonApplication(Notifications())
 
     override fun onCreate() {
         super.onCreate()
+        application.onStart()
 
         Timber.plant(Timber.DebugTree())
 
