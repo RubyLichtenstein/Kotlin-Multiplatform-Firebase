@@ -23,7 +23,7 @@ external open class DocumentBuilder {
     open var opts: Any = definedExternally
     open fun onWrite(handler: (change: Change<DocumentSnapshot>, context: EventContext) -> dynamic /* PromiseLike<Any> | Any */): dynamic = definedExternally
     open fun onUpdate(handler: (change: Change<DocumentSnapshot>, context: EventContext) -> dynamic /* PromiseLike<Any> | Any */): dynamic = definedExternally
-    open fun onCreate(handler: (snapshot: DocumentSnapshot, context: EventContext) -> Promise<Any> /*| Any */): dynamic = definedExternally
+    open fun onCreate(handler: (snapshot: DocumentSnapshot, context: EventContext) -> Promise<Any> /*| Any */): Promise<Any> = definedExternally
     open fun onDelete(handler: (snapshot: DocumentSnapshot, context: EventContext) -> dynamic /* PromiseLike<Any> | Any */): dynamic = definedExternally
     open fun <T> onOperation(handler: Any, eventType: Any, dataConstructor: Any): Unit = definedExternally
 }
