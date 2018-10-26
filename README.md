@@ -9,6 +9,7 @@ This project demonstrainting Kotlin multiplatform with android and ios client an
 Android and ios written in kotlin
 Firebase functions in kotlin and transpiled to JS.
 
+
 ### Common - Client/Server 
 
 ### Common Client - Android/iOS/Web
@@ -31,6 +32,8 @@ View expectitions
 
 ## How to build and run 
 
+# Setup
+https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
 #### Android 
 

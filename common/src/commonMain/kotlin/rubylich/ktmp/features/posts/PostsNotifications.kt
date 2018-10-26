@@ -3,8 +3,6 @@ package rubylich.ktmp.features.posts
 
 object NotificationData {
     const val KEY_ID = "id"
-    const val KEY_TITLE = "title"
-    const val KEY_BODY = "body"
 }
 
 object PostsNotification {
@@ -13,7 +11,19 @@ object PostsNotification {
 
     data class Data(
         val id: String = ID,
-        val post: Post,
+        val postId: String,
+        val postContent: String,
         val sound: String = "default"
-    )
+    ) {
+        companion object {
+            fun fromMap(map: Map<String, String>): Data {
+                return Data(
+                    id = map["id"] as String,
+                    postId = map["postId"] as String,
+                    postContent = map["postContent"] as String,
+                    sound = map["sound"] as String
+                )
+            }
+        }
+    }
 }
