@@ -1,4 +1,6 @@
-# Kotlin Multiplatform - Android/iOS/Web/Node.js
+# Kotlin Multiplatform - build multiplatform application with kotlin and Firebase. 
+
+####  Android/iOS/Web/Node.js
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" width="50">
