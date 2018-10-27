@@ -1,5 +1,4 @@
-# Kotlin Multiplatform 
-### Android/iOS/Web/Node.js
+# Kotlin Multiplatform - Android/iOS/Web/Node.js
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" width="50">
@@ -13,10 +12,10 @@
 [![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.0-blue.svg)](http://kotlinlang.org)
 
-Simple app demonstrating how kotlin is everywhere 
 
-Multiplatform Android/iOS/Web/Node.js
+### Kotlin is here there and everywhere!
 
+## Introduction.
 
 ### Kotlin targets
 - JVM
@@ -29,20 +28,24 @@ Multiplatform Android/iOS/Web/Node.js
 
 - this excludes the JDK and any JVM or Java framework or library used.
 
-##### Client-side JS
-Interacting with DOM elements. Kotlin provides a series of statically typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements.
+#### Client-side JS
+- Interacting with DOM elements. Kotlin provides a series of statically typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements.
 
-Interacting with graphics such as WebGL. You can use Kotlin to create graphical elements on a web page using WebGL.
+- Interacting with graphics such as WebGL. You can use Kotlin to create graphical elements on a web page using WebGL.
 
-##### Server-side JS 
-Working with server-side technology. You can use Kotlin to interact with server-side JavaScript such as Node.js
+#### Server-side JS 
+- Working with server-side technology. You can use Kotlin to interact with server-side JavaScript such as Node.js
 you can convert TypeScript definitions from the Definitely Typed type definitions repository to Kotlin using the ts2kt tool. Alternatively, you can use the dynamic type to access any framework without strong typing.
 
-##### ts2kt
+#### [ts2kt](https://github.com/Kotlin/ts2kt)
+- Converter of TypeScript definition files to Kotlin declarations
 
-##### dynamic type
+#### [Dynamic Type](https://kotlinlang.org/docs/reference/dynamic-type.html)
+
+- Being a statically typed language, Kotlin still has to interoperate with untyped or loosely typed environments, such as the JavaScript ecosystem. To facilitate these use cases, the `dynamic` type is available in the language.
 
 #### Kotlin Native
+//TODO
 
 ##### Why Kotlin/Native?
 
