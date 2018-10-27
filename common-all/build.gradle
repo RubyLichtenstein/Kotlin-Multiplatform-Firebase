@@ -67,7 +67,8 @@ kotlin {
             }
         }
         jsTest {
-
+            implementation "org.jetbrains.kotlin:kotlin-test"
+            implementation "org.jetbrains.kotlin:kotlin-test-annotations"
         }
 
         androidMain {

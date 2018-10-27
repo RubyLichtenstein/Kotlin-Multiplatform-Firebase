@@ -26,7 +26,7 @@ android:
   - extra
 
 script:
-  - ./gradlew buildDebug common:createDebugCoverageReport common-client:createDebugCoverageReport
+  - ./gradlew buildDebug common-all:createDebugCoverageReport common-client:createDebugCoverageReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

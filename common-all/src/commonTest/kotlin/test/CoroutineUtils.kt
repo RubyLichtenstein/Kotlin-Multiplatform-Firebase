@@ -6,7 +6,7 @@ import kotlin.test.assertTrue
 class Test {
     @Test
     fun launchAndCatchTest() {
-        assertTrue { true }
+        assertTrue { false }
     }
 
 //    @Test
