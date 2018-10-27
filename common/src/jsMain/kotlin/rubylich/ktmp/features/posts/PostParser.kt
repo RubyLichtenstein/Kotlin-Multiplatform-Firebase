@@ -1,17 +1,13 @@
 package rubylich.ktmp.features.posts
 
+import kotlinx.serialization.DynamicObjectParser
 import rubylich.ktmp.functions.ts2kt_firebase_admin.DocumentSnapshot
 import rubylich.ktmp.repo.Parser
 
 actual class PostParser actual constructor() : Parser<Post> {
     override fun parse(any: Any): Post {
-        return (any as DocumentSnapshot).toPost()
+        return (any as DocumentSnapshot).parse()
     }
 }
 
-fun DocumentSnapshot.toPost(): Post {
-    return Post(
-        id = get("id") as String,
-        content = get("content") as String
-    )
-}
+inline fun <reified T: Any> DocumentSnapshot.parse(): T = DynamicObjectParser().parse(this.data().asDynamic())

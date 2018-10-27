@@ -5,7 +5,7 @@ import rubylich.ktmp.lib.await
 
 actual abstract class Repo<T : Any> actual constructor(
     ref: String,
-    val parser: Parser<T>
+    private val parser: Parser<T>
 ) : IRepo<T> {
     val collection = FirebaseFirestore.getInstance().collection(ref)
 
