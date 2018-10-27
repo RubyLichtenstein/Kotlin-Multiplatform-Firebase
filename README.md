@@ -44,6 +44,8 @@ you can convert TypeScript definitions from the Definitely Typed type definiti
 
 - Being a statically typed language, Kotlin still has to interoperate with untyped or loosely typed environments, such as the JavaScript ecosystem. To facilitate these use cases, the `dynamic` type is available in the language.
 
+#### KotlinJS Interop.
+
 #### Kotlin Native
 //TODO
 
@@ -86,6 +88,19 @@ Overall, multiplatform is not about compiling all code for all platforms. This m
 - Can only depend on other Kotlin common module or libraris. 
 
 ### Multiplatform Architecture.
+
+#### Client Architecture.
+
+- Data Models.
+- Repositories.
+- Presenters. 
+- Views.
+
+#### Server Architecture.
+
+- Data Models.
+- Repositories.
+- Api.
 
 ## Project Structure
 
