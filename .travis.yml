@@ -48,7 +48,7 @@ android:
 #  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
 
 script:
-  - ./gradlew buildDebug
+  - ./gradlew buildDebug common:createDebugCoverageReport common-client:createDebugCoverageReport
 
 #script:
 #  - ./gradlew build check
