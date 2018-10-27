@@ -6,7 +6,7 @@ abstract class PushNotificationItem(
 ) {
     abstract fun title(): String
     abstract fun body(): String
-    abstract fun runAfterExecution()
+    abstract fun runAfterNotify()
     open fun channel(): PushNotificationChannel = PushNotificationChannel.Default()
     open fun drop(): Boolean = false
     abstract fun id(): Int
@@ -14,7 +14,7 @@ abstract class PushNotificationItem(
     class Drop(
         data: Map<String, String>
     ) : PushNotificationItem(data) {
-        override fun runAfterExecution() {
+        override fun runAfterNotify() {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 

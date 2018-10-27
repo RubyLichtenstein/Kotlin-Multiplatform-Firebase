@@ -2,11 +2,13 @@ package rubylich.ktmp.features.posts
 
 import kotlinx.coroutines.channels.consumeEach
 import rubylich.ktmp.launchAndCatch
+import rubylich.ktmp.notifications.IUnreadNotificationsRepo
 import kotlin.coroutines.CoroutineContext
 import kotlin.random.Random
 
 class PostsPresenter(
     private val uiContext: CoroutineContext,
+    private val unreadNotificationsRepo: IUnreadNotificationsRepo,
     private val postsRepo: IPostRepo,
     private val postsView: IPostsView
 ) {
@@ -48,6 +50,7 @@ class PostsPresenter(
             postsView.showRefresh(true)
             postsView.showPosts(postsRepo.getAll())
             postsView.showRefresh(false)
+            unreadNotificationsRepo.clear(PostsNotification.ID)
         }
     }
 

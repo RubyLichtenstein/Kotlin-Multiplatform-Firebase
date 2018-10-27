@@ -11,21 +11,31 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
 import com.example.testmodule.R
+import com.russhwolf.settings.PlatformSettings
 import kotlinx.android.synthetic.main.add_post_dialog_layout.view.*
 import kotlinx.android.synthetic.main.posts_view_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import rubylich.ktmp.notifications.UnreadNotificationsRepo
 
 actual class PostsView : Fragment(), IPostsView {
 
-    private val dialogContentBroadcast = ConflatedBroadcastChannel<String>()
+    private val dialogContentChannel = ConflatedBroadcastChannel<String>()
+    private val refreshChannel = ConflatedBroadcastChannel<Unit>()
+    private val addPostButtonChannel = ConflatedBroadcastChannel<Unit>()
+
     private val adapter = PostsAdapter()
     private lateinit var postsPresenter: PostsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postsPresenter = PostsPresenter(Dispatchers.Main, PostsRepo(), this)
+        postsPresenter = PostsPresenter(
+            Dispatchers.Main,
+            UnreadNotificationsRepo(PlatformSettings.Factory(context!!)),
+            PostsRepo(),
+            this
+        )
     }
 
     override fun onCreateView(
@@ -47,6 +57,9 @@ actual class PostsView : Fragment(), IPostsView {
 
     override fun onDestroy() {
         super.onDestroy()
+        dialogContentChannel.close()
+        addPostButtonChannel.close()
+        refreshChannel.close()
         postsPresenter.onDestroy()
     }
 
@@ -65,7 +78,7 @@ actual class PostsView : Fragment(), IPostsView {
             .setTitle("New post")
             .setView(dialogView)
             .setPositiveButton("Send") { dialog: DialogInterface?, which: Int ->
-                dialogContentBroadcast.offer(contentEditText.text.toString())
+                dialogContentChannel.offer(contentEditText.text.toString())
             }
             .show()
 
@@ -75,17 +88,17 @@ actual class PostsView : Fragment(), IPostsView {
     }
 
     actual override fun addPostButtonClick(): BroadcastChannel<Unit> =
-        ConflatedBroadcastChannel<Unit>().apply {
+        addPostButtonChannel.apply {
             addPostButton.setOnClickListener {
                 offer(Unit)
             }
         }
 
-    actual override fun addPostContent(): BroadcastChannel<String> = dialogContentBroadcast
+    actual override fun addPostContent(): BroadcastChannel<String> = dialogContentChannel
     actual override fun showError(error: Throwable) {}
 
     actual override fun refresh(): BroadcastChannel<Unit> =
-        ConflatedBroadcastChannel<Unit>().apply {
+        refreshChannel.apply {
             postsSwipeRefresh.setOnRefreshListener {
                 offer(Unit)
             }

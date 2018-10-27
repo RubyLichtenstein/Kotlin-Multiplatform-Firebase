@@ -69,6 +69,7 @@ dependencies {
 
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:viewmodel:${lifecycle_version}"
+    implementation "com.russhwolf:multiplatform-settings-android:0.1"
 
     implementation "android.arch.lifecycle:runtime:$lifecycle_version"
     implementation "android.arch.paging:runtime:1.0.1"
