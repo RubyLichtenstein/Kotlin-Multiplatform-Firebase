@@ -8,12 +8,15 @@ interface NotificationItemResolver {
     fun resolve(data: Map<String, String>): PushNotificationItem
 }
 
-class NotificationItemResolverImpl :
+class NotificationItemResolverImpl(private val unreadNotificationsRepo: IUnreadNotificationsRepo) :
     NotificationItemResolver {
     override fun resolve(data: Map<String, String>): PushNotificationItem {
         val id = data[KEY_ID]
         return when (id) {
-            PostsNotification.ID -> PostsNotificationItem(data)
+            PostsNotification.ID -> PostsNotificationItem(
+                unreadNotificationsRepo,
+                data
+            )
             else -> PushNotificationItem.Drop(data)
         }
     }

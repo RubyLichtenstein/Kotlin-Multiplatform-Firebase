@@ -23,7 +23,7 @@ class PushNotification(
         }
 
         val id = resolvedNotification.id()
-        resolvedNotification.runAfterExecution()
+        resolvedNotification.runAfterNotify()
         notificationManager.notify(id, notificationBuilder.build(context, resolvedNotification))
     }
 }
