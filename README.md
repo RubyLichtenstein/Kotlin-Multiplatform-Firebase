@@ -169,6 +169,7 @@ https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
 ## Libraries used in this project
 Serialization https://github.com/Kotlin/kotlinx.serialization
+
 Multiplatform Settings https://github.com/russhwolf/multiplatform-settings
 
 ## Resources
