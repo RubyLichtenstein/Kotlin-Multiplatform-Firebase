@@ -1,41 +1,7 @@
 apply plugin: 'kotlin-multiplatform'
-//apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 
-//configurations {
-//    compileClasspath
-//}
-
-buildscript {
-    repositories {
-        jcenter()
-        google()
-        maven { url 'https://jitpack.io' }
-        maven { url "http://kotlin.bintray.com/kotlin-dev" }
-        maven { url "http://kotlin.bintray.com/kotlin-eap" }
-        maven { url "https://kotlin.bintray.com/kotlinx" }
-        maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-    repositories {
-        maven { url 'https://jitpack.io' }
-        maven { url "http://kotlin.bintray.com/kotlin-eap" }
-        maven { url "http://kotlin.bintray.com/kotlin-dev" }
-        maven { url "https://kotlin.bintray.com/kotlinx" }
-        maven { url "https://dl.bintray.com/kotlin/ktor" }
-        maven { url "https://dl.bintray.com/sargunster/maven" }
-        maven { url "https://dl.bintray.com/kotlin/squash" }
-        maven { url = 'https://dl.bintray.com/russhwolf/multiplatform-settings' }
-
-        google()
-        jcenter()
-    }
-}
 androidExtensions {
     experimental = true
 }
