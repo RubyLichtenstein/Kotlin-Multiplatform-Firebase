@@ -1,19 +1,19 @@
-package rubylich.ktmp
-
-import kotlin.test.Test
-import kotlin.test.assertTrue
-
-class Test {
-    @Test
-    fun launchAndCatchTest() {
-        assertTrue { false }
-    }
-
+//package rubylich.ktmp
+//
+//import kotlin.test.Test
+//import kotlin.test.assertTrue
+//
+//class Test {
 //    @Test
-//    fun launchAndCatchTest1() {
+//    fun launchAndCatchTest() {
 //        assertTrue { false }
 //    }
-}
-
-
-
+//
+////    @Test
+////    fun launchAndCatchTest1() {
+////        assertTrue { false }
+////    }
+//}
+//
+//
+//

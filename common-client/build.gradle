@@ -64,7 +64,7 @@ kotlin {
         }
 
         androidMain {
-            dependsOn commonMain
+//            dependsOn commonMain
             dependencies {
                 implementation project(":common-all")
                 implementation 'com.beust:klaxon:3.0.1'
