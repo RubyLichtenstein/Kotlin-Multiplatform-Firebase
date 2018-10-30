@@ -1,12 +1,13 @@
 package rubylich.ktmp.notifications
 
+import kotlinx.serialization.Mapper
 import rubylich.ktmp.features.posts.PostsNotification
 
 class PostsNotificationItem(
     private val unreadNotificationsRepo: IUnreadNotificationsRepo,
     data: Map<String, String>
 ) : PushNotificationItem(data) {
-    private val notificationData = PostsNotification.Data.fromMap(data)
+    private val notificationData = Mapper.unmap<PostsNotification.Data>(data)
 
     override fun id(): Int = notificationData.id.hashCode()
 
