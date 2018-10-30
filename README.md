@@ -118,6 +118,17 @@ Overall, multiplatform is not about compiling all code for all platforms. This m
 #### Share code between all clients (Android/iOS/Web) and server (Node.Js).
 
 
+## Testing
+
+### Testing libraris
+https://github.com/mockk/mockk
+
+### JVM
+### JS
+https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
+
+### Native
+
 #### `common`
 - Models.
 - Repository Expectation.
