@@ -166,6 +166,11 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
 
 https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 
+- if you're using the canary version of Android Studio
+ check if kotlin 1.3 plugin is enabled for your version
+ 
+ https://plugins.jetbrains.com/plugin/6954-kotlin
+
 #### Running the Node.js App (Firebase functions)
 
 1. `cd common/firebase/functions`
