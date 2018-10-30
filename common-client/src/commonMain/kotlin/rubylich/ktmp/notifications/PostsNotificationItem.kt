@@ -1,8 +1,10 @@
 package rubylich.ktmp.notifications
 
+import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.Mapper
 import rubylich.ktmp.features.posts.PostsNotification
 
+@ImplicitReflectionSerializer
 class PostsNotificationItem(
     private val unreadNotificationsRepo: IUnreadNotificationsRepo,
     data: Map<String, String>

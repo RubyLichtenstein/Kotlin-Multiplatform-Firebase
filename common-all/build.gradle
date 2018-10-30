@@ -52,7 +52,7 @@ kotlin {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$coroutines_version"
-                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+//                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
             }
         }
         commonTest {
@@ -82,7 +82,7 @@ kotlin {
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
                 implementation 'com.google.firebase:firebase-firestore:17.1.0'
-                implementation 'com.github.brotoo25:firestore-coroutines:0.0.4'
+//                implementation 'com.github.brotoo25:firestore-coroutines:0.0.4'
                 implementation "com.android.support:recyclerview-v7:28.0.0"
                 implementation 'com.android.support.constraint:constraint-layout:1.1.3'
                 implementation "com.android.support:cardview-v7:28.0.0"
@@ -122,9 +122,21 @@ task firebaseDeployLocaly(type: Exec) {
     commandLine 'firebase', 'functions:shell'
 }
 
+task serializationRefToLocalModule << {
+
+    def serialization = 'kotlinx-serialization-runtime-js'
+
+    ant.replaceregexp(match: "$serialization", replace: "../$serialization-0.9.0/$serialization", flags: 'g', byline: true) {
+        fileset(dir: "$firebaseFunctionsPath", includes: 'index.js')
+    }
+}
+
 buildFirebaseFunctions.dependsOn(copyCommonJsFirebaseModules)
 firebaseDeployLocaly.dependsOn(copyCommonJsFirebaseModules)
-firebaseDeploy.dependsOn(copyCommonJsFirebaseModules)
+
+
+firebaseDeploy.dependsOn(serializationRefToLocalModule)
+serializationRefToLocalModule.dependsOn(copyCommonJsFirebaseModules)
 copyCommonJsFirebaseModules.dependsOn(compileKotlinJs)
 
 

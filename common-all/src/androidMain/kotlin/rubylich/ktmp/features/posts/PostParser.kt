@@ -1,4 +1,5 @@
 package rubylich.ktmp.features.posts
+import kotlinx.serialization.ImplicitReflectionSerializer
 
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.serialization.Mapper
@@ -10,4 +11,5 @@ actual class PostParser actual constructor() : Parser<Post> {
     }
 }
 
+@UseExperimental(ImplicitReflectionSerializer::class)
 inline fun <reified T: Any> DocumentSnapshot.parse(): T = Mapper.unmap(this.data!!)

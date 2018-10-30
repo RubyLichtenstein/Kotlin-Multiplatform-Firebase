@@ -3,18 +3,6 @@ apply plugin: 'kotlinx-serialization'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 
-buildscript {
-    repositories {
-        jcenter()
-        google()
-        maven { url 'https://jitpack.io' }
-        maven { url "http://kotlin.bintray.com/kotlin-dev" }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
 androidExtensions {
     experimental = true
 }
