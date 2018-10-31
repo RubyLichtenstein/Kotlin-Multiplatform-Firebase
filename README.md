@@ -11,7 +11,7 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Firebase_logo1.png" width="170">
 </p>
 
-[![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-multiplatform-firebase)
+[![Build Status](https://travis-ci.org/RubyLichtenstein/Kotlin-Multiplatform-Firebase.svg?branch=master)](https://travis-ci.org/RubyLichtenstein/Kotlin-Multiplatform-Firebase)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.0-blue.svg)](http://kotlinlang.org)
 
 
