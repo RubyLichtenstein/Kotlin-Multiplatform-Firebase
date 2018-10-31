@@ -1,5 +1,4 @@
 import rubylich.ktmp.functions.db.posts.dbPostsOnCreate
-import rubylich.ktmp.functions.db.posts.dbPostsOnDelete
 import rubylich.ktmp.functions.lib.adminInitializeApp
 
 external fun require(module: String): dynamic
