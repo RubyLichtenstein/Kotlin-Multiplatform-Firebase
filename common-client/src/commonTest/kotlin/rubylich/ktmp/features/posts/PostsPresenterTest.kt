@@ -10,10 +10,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rubylich.ktmp.notifications.IUnreadNotificationsRepo
 import kotlin.test.Test
+import kotlin.test.assertTrue
 
 
 class PostsPresenterTest {
-    val postsRepo = mockk<IPostRepo>(relaxed = true)
+    val postsRepo = mockk<IPostRepo>()
     val postsView = mockk<IPostsView>()
     val unreadNotificationsRepo = mockk<IUnreadNotificationsRepo>(relaxed = true)
 

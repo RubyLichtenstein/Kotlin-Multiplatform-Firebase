@@ -7,6 +7,7 @@ apply plugin: "jacoco"
 androidExtensions {
     experimental = true
 }
+
 //jacocoTestReport {
 //    reports {
 //        xml.enabled true
@@ -34,6 +35,7 @@ android {
             testCoverageEnabled = true
         }
         release {
+            testCoverageEnabled = true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -66,7 +68,6 @@ kotlin {
         }
 
         androidMain {
-//            dependsOn commonMain
             dependencies {
                 implementation project(":common-all")
                 implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -85,9 +86,6 @@ kotlin {
         }
 
         androidTest {
-//            dependsOn commonTest
-//            dependsOn androidMain
-
             dependencies {
                 implementation project(":common-all")
                 implementation "io.mockk:mockk:$mockk_version"
