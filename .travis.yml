@@ -2,32 +2,27 @@ language: android
 jdk: oraclejdk8
 env:
   global:
-    - ANDROID_API_LEVEL=28
-    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+  - ANDROID_API_LEVEL=28
+  - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+  - secure: UfgD/PSYCwsWZ1068nF8RSc0rP/m+ggwD4cW8hj4TVn17Z1if94thdwDM2uXP+Spv6YeJ8Zv3F2OuKY/kC1ooY5x7dkN1BIAcpiaxMK1HMO0cTa+QjynBs26/lSDAe8/d+Isp/HV3xw1+fBetpQUUyS5fmn/iqN7KwnGcLrnC5fv/QAkbhYNi506Q508izjm02r2hjuNnyhQ3LoApwkrMqrzhTVXvW8HyM8Y15Mt12c/IafsqmFrN5x8S9Plf0uT9M03vzhesVTa8Mnqjcz2Tr3Y/ggjzdoxgBK7vfmTpPy4iJ5iNwRomh4UjNi3TVg06KX8C5wR4In1MGwaHurVoKGUar0R5cpr1kANRd+55hK/eXT8qEgy/rpAzTntQoAuNTuHIjSEPQcyLSTenwHHF2nfYMIPgrPFpdo4ryo5q3lbgWgOV/MhRoXstrenV8d2eOHnwfaUj9wXmELszB+0YDuUhY6AA7rsm2wC0+FdXx9MUyfjzEVUYx2E/jQIr6JOaoJg63xqkT3/QgEVd5YV7f3UBaXNFDy60nDtUhtth1h8lDBVLvKSZoVkYpS1qSM6tm3knqcmbNI9j5ajM/nwZEznrxra0UlpN8M04Hy+esSEb6KafKqjReUZ6gck+65tBkXLTie1yQe2mi0cj2lXk5G9BPlkx6C/yxlfggrAJdM=
 android:
   licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+  - android-sdk-preview-license-.+
+  - android-sdk-license-.+
+  - google-gdk-license-.+
   components:
-    - tools
-    - platform-tools
-    # The BuildTools version used by your project
-    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-    # The SDK version used to compile your project
-    - android-$ANDROID_API_LEVEL
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - addon-google_apis-google-$ANDROID_API_LEVEL
-#before_script:
-  # Prepare pre-accepted licenses to not be promted at installation
-#  - mkdir -p "$ANDROID_HOME/licenses"
-#  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
-
+  - tools
+  - platform-tools
+  - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+  - android-$ANDROID_API_LEVEL
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - extra-android-m2repository
+  - addon-google_apis-google-$ANDROID_API_LEVEL
 script:
-  - ./gradlew buildDebug
-
-#script:
-#  - ./gradlew build check
+- "./gradlew buildDebug"
+deploy:
+  provider: firebase
+  token:
+    secure: "UfgD/PSYCwsWZ1068nF8RSc0rP/m+ggwD4cW8hj4TVn17Z1if94thdwDM2uXP+Spv6YeJ8Zv3F2OuKY/kC1ooY5x7dkN1BIAcpiaxMK1HMO0cTa+QjynBs26/lSDAe8/d+Isp/HV3xw1+fBetpQUUyS5fmn/iqN7KwnGcLrnC5fv/QAkbhYNi506Q508izjm02r2hjuNnyhQ3LoApwkrMqrzhTVXvW8HyM8Y15Mt12c/IafsqmFrN5x8S9Plf0uT9M03vzhesVTa8Mnqjcz2Tr3Y/ggjzdoxgBK7vfmTpPy4iJ5iNwRomh4UjNi3TVg06KX8C5wR4In1MGwaHurVoKGUar0R5cpr1kANRd+55hK/eXT8qEgy/rpAzTntQoAuNTuHIjSEPQcyLSTenwHHF2nfYMIPgrPFpdo4ryo5q3lbgWgOV/MhRoXstrenV8d2eOHnwfaUj9wXmELszB+0YDuUhY6AA7rsm2wC0+FdXx9MUyfjzEVUYx2E/jQIr6JOaoJg63xqkT3/QgEVd5YV7f3UBaXNFDy60nDtUhtth1h8lDBVLvKSZoVkYpS1qSM6tm3knqcmbNI9j5ajM/nwZEznrxra0UlpN8M04Hy+esSEb6KafKqjReUZ6gck+65tBkXLTie1yQe2mi0cj2lXk5G9BPlkx6C/yxlfggrAJdM="
+  project: "functions"
