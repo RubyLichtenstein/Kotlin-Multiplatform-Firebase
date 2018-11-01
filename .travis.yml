@@ -27,7 +27,8 @@ android:
   - extra
 
 script:
-  - ./gradlew buildDebug
+  - ./gradlew common-all:firebaseDeploy
+#  buildDebug
 #  common-all:createDebugCoverageReport common-client:createDebugCoverageReport
 
 deploy:
