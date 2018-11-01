@@ -34,9 +34,18 @@ android {
 
 def firebaseFunctionsPath = "../firebase/functions/kotlin2js"
 
+
+
 kotlin {
     targets {
         fromPreset(presets.js, 'js') {
+
+            compileTestKotlinJs.kotlinOptions {
+                moduleKind = "commonjs"
+                metaInfo = true
+                sourceMap = true
+            }
+
             compileKotlinJs.kotlinOptions {
                 moduleKind = "commonjs"
                 metaInfo = true
@@ -70,6 +79,7 @@ kotlin {
         jsTest {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-test-js"
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
 //                implementation "org.jetbrains.kotlin:kotlin-test-annotations"
 
             }
@@ -104,8 +114,12 @@ clean.doFirst {
 }
 
 task copyCommonJsFirebaseModules(type: Copy) {
-    print(compileKotlinJs.destinationDir)
     from compileKotlinJs.destinationDir
+    into firebaseFunctionsPath
+}
+
+task copyCompileTestKotlinJsToFirebase(type: Copy) {
+    from compileTestKotlinJs.destinationDir
     into firebaseFunctionsPath
 }
 

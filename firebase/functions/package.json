@@ -1,6 +1,6 @@
 {
   "name": "functions",
-  "description": "Cloud Functions for out connect",
+  "description": "Cloud Functions",
   "scripts": {
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
@@ -9,7 +9,7 @@
     "deployRelease": "firebase deploy --only functions",
     "logs": "firebase functions:log",
     "version": "1.0.0",
-    "test": "../.././gradlew test"
+    "test": "node_modules/.bin/jest kotlin2js"
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.18.0",
@@ -25,5 +25,9 @@
     "testRegex": "_test\\.js$"
   },
   "private": true,
-  "main": "kotlin2js/index.js"
+  "main": "kotlin2js/index.js",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "kotlin-test": "^1.3.0"
+  }
 }
