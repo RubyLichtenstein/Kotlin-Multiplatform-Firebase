@@ -1,6 +1,6 @@
-# Kotlin Multiplatform Firebase - build multiplatform application with kotlin and Firebase. 
+# Kotlin Multiplatform Firebase.
 
-####  Android/iOS/Web/Node.js
+####  Android/iOS/Node.js
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" width="50">
