@@ -1,28 +1,40 @@
 language: android
 jdk: oraclejdk8
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
+
 env:
   global:
-  - ANDROID_API_LEVEL=28
-  - ANDROID_BUILD_TOOLS_VERSION=28.0.3
-  - secure: UfgD/PSYCwsWZ1068nF8RSc0rP/m+ggwD4cW8hj4TVn17Z1if94thdwDM2uXP+Spv6YeJ8Zv3F2OuKY/kC1ooY5x7dkN1BIAcpiaxMK1HMO0cTa+QjynBs26/lSDAe8/d+Isp/HV3xw1+fBetpQUUyS5fmn/iqN7KwnGcLrnC5fv/QAkbhYNi506Q508izjm02r2hjuNnyhQ3LoApwkrMqrzhTVXvW8HyM8Y15Mt12c/IafsqmFrN5x8S9Plf0uT9M03vzhesVTa8Mnqjcz2Tr3Y/ggjzdoxgBK7vfmTpPy4iJ5iNwRomh4UjNi3TVg06KX8C5wR4In1MGwaHurVoKGUar0R5cpr1kANRd+55hK/eXT8qEgy/rpAzTntQoAuNTuHIjSEPQcyLSTenwHHF2nfYMIPgrPFpdo4ryo5q3lbgWgOV/MhRoXstrenV8d2eOHnwfaUj9wXmELszB+0YDuUhY6AA7rsm2wC0+FdXx9MUyfjzEVUYx2E/jQIr6JOaoJg63xqkT3/QgEVd5YV7f3UBaXNFDy60nDtUhtth1h8lDBVLvKSZoVkYpS1qSM6tm3knqcmbNI9j5ajM/nwZEznrxra0UlpN8M04Hy+esSEb6KafKqjReUZ6gck+65tBkXLTie1yQe2mi0cj2lXk5G9BPlkx6C/yxlfggrAJdM=
+    - ANDROID_API_LEVEL=28
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+    - secure: UfgD/PSYCwsWZ1068nF8RSc0rP/m+ggwD4cW8hj4TVn17Z1if94thdwDM2uXP+Spv6YeJ8Zv3F2OuKY/kC1ooY5x7dkN1BIAcpiaxMK1HMO0cTa+QjynBs26/lSDAe8/d+Isp/HV3xw1+fBetpQUUyS5fmn/iqN7KwnGcLrnC5fv/QAkbhYNi506Q508izjm02r2hjuNnyhQ3LoApwkrMqrzhTVXvW8HyM8Y15Mt12c/IafsqmFrN5x8S9Plf0uT9M03vzhesVTa8Mnqjcz2Tr3Y/ggjzdoxgBK7vfmTpPy4iJ5iNwRomh4UjNi3TVg06KX8C5wR4In1MGwaHurVoKGUar0R5cpr1kANRd+55hK/eXT8qEgy/rpAzTntQoAuNTuHIjSEPQcyLSTenwHHF2nfYMIPgrPFpdo4ryo5q3lbgWgOV/MhRoXstrenV8d2eOHnwfaUj9wXmELszB+0YDuUhY6AA7rsm2wC0+FdXx9MUyfjzEVUYx2E/jQIr6JOaoJg63xqkT3/QgEVd5YV7f3UBaXNFDy60nDtUhtth1h8lDBVLvKSZoVkYpS1qSM6tm3knqcmbNI9j5ajM/nwZEznrxra0UlpN8M04Hy+esSEb6KafKqjReUZ6gck+65tBkXLTie1yQe2mi0cj2lXk5G9BPlkx6C/yxlfggrAJdM=
+
 android:
-  licenses:
-  - android-sdk-preview-license-.+
-  - android-sdk-license-.+
-  - google-gdk-license-.+
   components:
   - tools
+  - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
   - platform-tools
-  - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-  - android-$ANDROID_API_LEVEL
-  - extra-google-google_play_services
-  - extra-google-m2repository
-  - extra-android-m2repository
-  - addon-google_apis-google-$ANDROID_API_LEVEL
+  - android-${ANDROID_API_LEVEL}
+  - build-tools-${ANDROID_BUILD_TOOLS_VERSION}
+  - extra
+
 script:
-- "./gradlew buildDebug"
+  - ./gradlew buildDebug
+#  common-all:createDebugCoverageReport common-client:createDebugCoverageReport
+
 deploy:
   provider: firebase
   token:
     secure: "UfgD/PSYCwsWZ1068nF8RSc0rP/m+ggwD4cW8hj4TVn17Z1if94thdwDM2uXP+Spv6YeJ8Zv3F2OuKY/kC1ooY5x7dkN1BIAcpiaxMK1HMO0cTa+QjynBs26/lSDAe8/d+Isp/HV3xw1+fBetpQUUyS5fmn/iqN7KwnGcLrnC5fv/QAkbhYNi506Q508izjm02r2hjuNnyhQ3LoApwkrMqrzhTVXvW8HyM8Y15Mt12c/IafsqmFrN5x8S9Plf0uT9M03vzhesVTa8Mnqjcz2Tr3Y/ggjzdoxgBK7vfmTpPy4iJ5iNwRomh4UjNi3TVg06KX8C5wR4In1MGwaHurVoKGUar0R5cpr1kANRd+55hK/eXT8qEgy/rpAzTntQoAuNTuHIjSEPQcyLSTenwHHF2nfYMIPgrPFpdo4ryo5q3lbgWgOV/MhRoXstrenV8d2eOHnwfaUj9wXmELszB+0YDuUhY6AA7rsm2wC0+FdXx9MUyfjzEVUYx2E/jQIr6JOaoJg63xqkT3/QgEVd5YV7f3UBaXNFDy60nDtUhtth1h8lDBVLvKSZoVkYpS1qSM6tm3knqcmbNI9j5ajM/nwZEznrxra0UlpN8M04Hy+esSEb6KafKqjReUZ6gck+65tBkXLTie1yQe2mi0cj2lXk5G9BPlkx6C/yxlfggrAJdM="
   project: "functions"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

@@ -1,4 +1,4 @@
-package rubylich.ktmp
+package test
 
 import kotlin.test.Test
 import kotlin.test.assertTrue
