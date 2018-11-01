@@ -32,11 +32,20 @@ android {
     }
 }
 
-def firebaseFunctionsPath = "../firebase/functions/kotlin2js"
+def firebaseFunctionsPath = "../firebase/functions/src"
+def firebaseFunctionsMain = firebaseFunctionsPath + '/main'
+def firebaseFunctionsTest = firebaseFunctionsPath + '/test'
 
 kotlin {
     targets {
         fromPreset(presets.js, 'js') {
+
+            compileTestKotlinJs.kotlinOptions {
+                moduleKind = "commonjs"
+                metaInfo = true
+                sourceMap = true
+            }
+
             compileKotlinJs.kotlinOptions {
                 moduleKind = "commonjs"
                 metaInfo = true
@@ -70,6 +79,7 @@ kotlin {
         jsTest {
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-test-js"
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
 //                implementation "org.jetbrains.kotlin:kotlin-test-annotations"
 
             }
@@ -100,20 +110,27 @@ kotlin {
 }
 
 clean.doFirst {
-    delete "${rootDir}/firebase/functions/kotlin2js"
+    delete "${rootDir}/firebase/functions/src"
 }
 
 task copyCommonJsFirebaseModules(type: Copy) {
-    print(compileKotlinJs.destinationDir)
     from compileKotlinJs.destinationDir
-    into firebaseFunctionsPath
+    into firebaseFunctionsMain
 }
 
-task buildFirebaseFunctions() {}
+task copyCompileTestKotlinJsToFirebase(type: Copy) {
+    from compileTestKotlinJs.destinationDir
+    into firebaseFunctionsTest
+}
 
 task firebaseDeploy(type: Exec) {
     workingDir '../firebase'
     commandLine 'firebase', 'deploy'
+}
+
+task firebaseTest(type: Exec) {
+    workingDir '../firebase/functions'
+    commandLine 'npm', 'test'
 }
 
 task firebaseDeployLocaly(type: Exec) {
@@ -125,17 +142,18 @@ task serializationRefToLocalModule << {
 
     def serialization = 'kotlinx-serialization-runtime-js'
 
-    ant.replaceregexp(match: "$serialization", replace: "../$serialization-0.9.0/$serialization", flags: 'g', byline: true) {
-        fileset(dir: "$firebaseFunctionsPath", includes: 'index.js')
+    ant.replaceregexp(match: "$serialization", replace: "../../$serialization-0.9.0/$serialization", flags: 'g', byline: true) {
+        fileset(dir: "$firebaseFunctionsMain", includes: 'index.js')
     }
 }
 
-buildFirebaseFunctions.dependsOn(copyCommonJsFirebaseModules)
-firebaseDeployLocaly.dependsOn(copyCommonJsFirebaseModules)
+//firebaseTest
+firebaseTest.dependsOn(copyCompileTestKotlinJsToFirebase)
+copyCompileTestKotlinJsToFirebase.dependsOn(compileTestKotlinJs)
+//
 
-
+//firebaseDeploy
 firebaseDeploy.dependsOn(serializationRefToLocalModule)
 serializationRefToLocalModule.dependsOn(copyCommonJsFirebaseModules)
 copyCommonJsFirebaseModules.dependsOn(compileKotlinJs)
-
-
+//
