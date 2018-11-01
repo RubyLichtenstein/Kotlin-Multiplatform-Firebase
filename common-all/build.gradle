@@ -32,7 +32,6 @@ android {
     }
 }
 
-def kotlinJsOutputPath = "build/outputs/kotlinJs"
 def firebaseFunctionsPath = "../firebase/functions/kotlin2js"
 
 kotlin {
@@ -40,7 +39,6 @@ kotlin {
         fromPreset(presets.js, 'js') {
             compileKotlinJs.kotlinOptions {
                 moduleKind = "commonjs"
-                outputFile = "$kotlinJsOutputPath/index.js"
                 metaInfo = true
                 sourceMap = true
             }
@@ -106,8 +104,8 @@ clean.doFirst {
 }
 
 task copyCommonJsFirebaseModules(type: Copy) {
-    from kotlinJsOutputPath
-    print(firebaseFunctionsPath)
+    print(compileKotlinJs.destinationDir)
+    from compileKotlinJs.destinationDir
     into firebaseFunctionsPath
 }
 
