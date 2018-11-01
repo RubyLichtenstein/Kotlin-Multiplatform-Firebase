@@ -15,43 +15,42 @@
 [![Kotlin](https://img.shields.io/badge/kotlin-1.3.0-blue.svg)](http://kotlinlang.org)
 
 
-### Kotlin is here there and everywhere!
+### Kotlin is everywhere!
 
+## Project files structure
 
-#### Client Architecture.
-
-- Data Models.
-- Repositories.
-- Presenters. 
-- Views.
-
-#### Server Architecture.
-
-- Data Models.
-- Repositories.
-- Api.
-
-## Project Structure
+Dirs
 
 - `android` - Android app.
-- `common-all` - Multiplatform and Android library.
-- `common-client` - Multiplatform and Android library. 
+- `common-all` - Multiplatform Module - share code between clients/server.
+- `common-client` - Multiplatform Module share code between clients: Android/iOS. 
 - `firebase` - Node.Js app.
 
 ## Project Architecture
+
+#### Client/Server shared code.
+- Data Models.
+- Repositories.
+
+#### All Client shared code.
+- Presenters. 
+
+#### Platform specific code.
+- Views.
 
 ### `common-all` Module
 
 #### Share code between all clients (Android/iOS/Web) and server (Node.Js).
 
-
 ## Testing
 
 ### Testing libraris
+Common module testing.
 https://github.com/mockk/mockk
 
 ### JVM
 ### JS
+NodeJs tests with jest.
 https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
 
 ### Native
@@ -68,7 +67,6 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
 - Repository Actual.
 #### `common-ios`
 - Repository Actual.
-
 
 ### `common-client` Module
 #### Share code between all clients (Android/iOS/Web)
@@ -107,13 +105,12 @@ https://proandroiddev.com/setup-kotlin-eap-in-your-android-app-73f2c06308e5
 #### Running the Android app 
 //TODO
 
-#### Running the Web app 
-//TODO
 
 ## Libraries used in this project
+#### common
 Serialization https://github.com/Kotlin/kotlinx.serialization
-
 Multiplatform Settings https://github.com/russhwolf/multiplatform-settings
+mockk https://github.com/mockk/mockk
 
 ## Resources
 
