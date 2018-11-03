@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.posts_view_layout.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import rubylich.ktmp.notifications.UnreadNotificationsRepo
+import rubylich.ktmp.features.posts.notifications.PostsUnreadNotificationsRepo
 
 actual class PostsView : Fragment(), IPostsView {
 
@@ -32,7 +32,7 @@ actual class PostsView : Fragment(), IPostsView {
         super.onCreate(savedInstanceState)
         postsPresenter = PostsPresenter(
             Dispatchers.Main,
-            UnreadNotificationsRepo(PlatformSettings.Factory(context!!)),
+            PostsUnreadNotificationsRepo(PlatformSettings.Factory(context!!)),
             PostsRepo(),
             this
         )

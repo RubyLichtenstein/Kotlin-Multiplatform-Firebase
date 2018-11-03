@@ -1,9 +1,9 @@
 package rubylich.ktmp.features.posts
 
 import rubylich.ktmp.functions.ts2kt_firebase_admin.DocumentSnapshot
-import rubylich.ktmp.repo.Parser
+import rubylich.ktmp.base.IBaseParser
 
-actual class PostParser actual constructor() : Parser<Post> {
+actual class PostParser actual constructor() : IBaseParser<Post> {
 //    @ImplicitReflectionSerializer
     override fun parse(any: Any): Post {
         val snapshot = (any as DocumentSnapshot)

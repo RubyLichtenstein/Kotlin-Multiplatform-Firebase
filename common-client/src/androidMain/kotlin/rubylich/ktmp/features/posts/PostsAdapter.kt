@@ -25,7 +25,7 @@ class PostsAdapter() :
             }
 
             override fun areItemsTheSame(item1: Post, item2: Post): Boolean {
-                return item1 === item2
+                return item1 == item2
             }
         })
 

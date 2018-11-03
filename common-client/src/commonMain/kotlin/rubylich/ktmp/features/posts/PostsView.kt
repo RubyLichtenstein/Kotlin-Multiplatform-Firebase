@@ -1,6 +1,7 @@
 package rubylich.ktmp.features.posts
 
 import kotlinx.coroutines.channels.BroadcastChannel
+import rubylich.ktmp.base.IBaseView
 
 expect class PostsView : IPostsView {
     override fun showPosts(posts: List<Post>)
@@ -12,7 +13,7 @@ expect class PostsView : IPostsView {
     override fun showRefresh(show: Boolean)
 }
 
-interface IPostsView : BaseView {
+interface IPostsView : IBaseView {
     fun showPosts(posts: List<Post>)
     fun showAddPostDialog()
     fun addPostButtonClick(): BroadcastChannel<Unit>

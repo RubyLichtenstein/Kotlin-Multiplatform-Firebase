@@ -1,13 +1,13 @@
 package rubylich.ktmp.features.posts
 
-import rubylich.ktmp.repo.IRepo
-import rubylich.ktmp.repo.Parser
-import rubylich.ktmp.repo.Repo
+import rubylich.ktmp.base.IBaseRepo
+import rubylich.ktmp.base.IBaseParser
+import rubylich.ktmp.base.BaseRepo
 
 const val REF_POSTS = "posts"
 
-interface IPostRepo : IRepo<Post>
+interface IPostBaseRepo : IBaseRepo<Post>
 
-class PostsRepo : Repo<Post>(REF_POSTS, PostParser()), IPostRepo
+class PostsRepo : BaseRepo<Post>(REF_POSTS, PostParser()), IPostBaseRepo
 
-expect class PostParser() : Parser<Post>
+expect class PostParser() : IBaseParser<Post>

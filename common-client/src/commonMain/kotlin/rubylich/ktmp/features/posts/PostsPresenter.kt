@@ -1,6 +1,7 @@
 package rubylich.ktmp.features.posts
 
 import kotlinx.coroutines.channels.consumeEach
+import rubylich.ktmp.base.IBasePresenter
 import rubylich.ktmp.launchAndCatch
 import rubylich.ktmp.notifications.IUnreadNotificationsRepo
 import kotlin.coroutines.CoroutineContext
@@ -9,30 +10,30 @@ import kotlin.random.Random
 class PostsPresenter(
     private val uiContext: CoroutineContext,
     private val unreadNotificationsRepo: IUnreadNotificationsRepo,
-    private val postsRepo: IPostRepo,
-    private val postsView: IPostsView
-) {
-    fun onCreate() {
+    private val postsRepo: IPostBaseRepo,
+    private val postsViewPostsView: IPostsView
+) : IBasePresenter {
+    override fun onCreate() {
         showPosts()
 
-        launchAndCatch(uiContext, postsView::showError) {
-            postsView
+        launchAndCatch(uiContext, postsViewPostsView::showError) {
+            postsViewPostsView
                 .refresh()
                 .consumeEach {
                     showPosts()
                 }
         }
 
-        launchAndCatch(uiContext, postsView::showError) {
-            postsView
+        launchAndCatch(uiContext, postsViewPostsView::showError) {
+            postsViewPostsView
                 .addPostButtonClick()
                 .consumeEach {
-                    postsView.showAddPostDialog()
+                    postsViewPostsView.showAddPostDialog()
                 }
         }
 
-        launchAndCatch(uiContext, postsView::showError) {
-            postsView
+        launchAndCatch(uiContext, postsViewPostsView::showError) {
+            postsViewPostsView
                 .addPostContent()
                 .consumeEach {
                     addPost(Post(Random.nextBytes(8).toString(), it))
@@ -41,16 +42,16 @@ class PostsPresenter(
         }
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
 
     }
 
     fun showPosts() {
-        launchAndCatch(uiContext, postsView::showError) {
-            postsView.showRefresh(true)
-            postsView.showPosts(postsRepo.getAll())
-            postsView.showRefresh(false)
-            unreadNotificationsRepo.clear(PostsNotification.ID)
+        launchAndCatch(uiContext, postsViewPostsView::showError) {
+            postsViewPostsView.showRefresh(true)
+            postsViewPostsView.showPosts(postsRepo.getAll())
+            postsViewPostsView.showRefresh(false)
+            unreadNotificationsRepo.clear(PostNotification.ID)
         }
     }
 
