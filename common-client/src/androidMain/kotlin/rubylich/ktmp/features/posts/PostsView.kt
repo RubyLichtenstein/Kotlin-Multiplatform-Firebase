@@ -64,7 +64,6 @@ actual class PostsView : Fragment(), IPostsView {
     }
 
     actual override fun showPosts(posts: List<Post>) {
-        adapter.posts.clear()
         adapter.posts.addAll(posts)
     }
 
