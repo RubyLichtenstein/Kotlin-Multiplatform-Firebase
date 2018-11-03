@@ -71,3 +71,4 @@ typings/
 /functions/build/
 *.iml
 /functions/kotlin2js/
+/functions/src/
