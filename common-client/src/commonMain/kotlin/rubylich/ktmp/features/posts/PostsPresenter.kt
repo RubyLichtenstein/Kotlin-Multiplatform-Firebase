@@ -13,46 +13,50 @@ class PostsPresenter(
     private val postsRepo: IPostBaseRepo,
     private val postsViewPostsView: IPostsView
 ) : IBasePresenter {
+
     override fun onCreate() {
-        showPosts()
+        launch { showPosts() }
 
-        launchAndCatch(uiContext, postsViewPostsView::showError) {
-            postsViewPostsView
-                .refresh()
-                .consumeEach {
-                    showPosts()
-                }
+        with(postsViewPostsView) {
+            launch {
+                refresh()
+                    .consumeEach {
+                        showPosts()
+                    }
+            }
+
+            launch {
+                addPostButtonClick()
+                    .consumeEach {
+                        postsViewPostsView.showAddPostDialog()
+                    }
+            }
+
+            launch {
+                addPostContent()
+                    .consumeEach {
+                        addPost(Post(Random.nextBytes(8).toString(), it))
+                        showPosts()
+                    }
+            }
         }
 
-        launchAndCatch(uiContext, postsViewPostsView::showError) {
-            postsViewPostsView
-                .addPostButtonClick()
-                .consumeEach {
-                    postsViewPostsView.showAddPostDialog()
-                }
-        }
-
-        launchAndCatch(uiContext, postsViewPostsView::showError) {
-            postsViewPostsView
-                .addPostContent()
-                .consumeEach {
-                    addPost(Post(Random.nextBytes(8).toString(), it))
-                    showPosts()
-                }
-        }
     }
+
+    private fun launch(function: suspend () -> Unit) =
+        launchAndCatch(uiContext, postsViewPostsView::showError, function)
 
     override fun onDestroy() {
 
     }
 
-    fun showPosts() {
-        launchAndCatch(uiContext, postsViewPostsView::showError) {
-            postsViewPostsView.showRefresh(true)
-            postsViewPostsView.showPosts(postsRepo.getAll())
-            postsViewPostsView.showRefresh(false)
-            unreadNotificationsRepo.clear(PostNotification.ID)
+    suspend fun showPosts() {
+        with(postsViewPostsView) {
+            showRefresh(true)
+            showPosts(postsRepo.getAll())
+            showRefresh(false)
         }
+        unreadNotificationsRepo.clear(PostNotification.ID)
     }
 
     suspend fun addPost(post: Post) {

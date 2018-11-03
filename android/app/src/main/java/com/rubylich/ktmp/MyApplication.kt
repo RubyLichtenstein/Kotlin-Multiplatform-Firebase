@@ -6,7 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import rubylich.ktmp.CommonApplication
-import rubylich.ktmp.features.posts.Notifications
+import rubylich.ktmp.notifications.NotificationsTopics
 import timber.log.Timber
 
 
@@ -14,7 +14,7 @@ import timber.log.Timber
  * Created by rl98880 on 25/06/2018.
  */
 class MyApplication : Application() {
-    private val application = CommonApplication(Notifications())
+    private val application = CommonApplication(NotificationsTopics())
 
     override fun onCreate() {
         super.onCreate()

@@ -1,8 +1,8 @@
-package rubylich.ktmp.features.posts
+package rubylich.ktmp.notifications
 
 import com.google.firebase.messaging.FirebaseMessaging
 
-actual class Notifications {
+actual class NotificationsTopics {
     actual fun subscribeToTopic(topic: String) {
         FirebaseMessaging.getInstance().subscribeToTopic(topic)
     }

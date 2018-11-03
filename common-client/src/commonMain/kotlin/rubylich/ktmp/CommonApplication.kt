@@ -1,10 +1,10 @@
 package rubylich.ktmp
 
-import rubylich.ktmp.features.posts.Notifications
 import rubylich.ktmp.features.posts.PostNotification
+import rubylich.ktmp.notifications.NotificationsTopics
 
-class CommonApplication(val notifications: Notifications) {
+class CommonApplication(private val notificationsTopics: NotificationsTopics) {
     fun onStart() {
-        notifications.subscribeToTopic(PostNotification.TOPIC)
+        notificationsTopics.subscribeToTopic(PostNotification.TOPIC)
     }
 }
