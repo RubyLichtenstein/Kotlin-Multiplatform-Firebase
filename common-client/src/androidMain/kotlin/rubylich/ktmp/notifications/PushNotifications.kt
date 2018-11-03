@@ -1,3 +1,5 @@
+package rubylich.ktmp.notifications
+
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent

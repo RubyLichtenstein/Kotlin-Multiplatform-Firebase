@@ -3,9 +3,9 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.serialization.Mapper
-import rubylich.ktmp.repo.Parser
+import rubylich.ktmp.base.IBaseParser
 
-actual class PostParser actual constructor() : Parser<Post> {
+actual class PostParser actual constructor() : IBaseParser<Post> {
     override fun parse(any: Any): Post {
         return (any as DocumentSnapshot).parse()
     }

@@ -33,7 +33,7 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_channel" />
 
-        <activity android:name="com.rubylich.ktmp.PostsActivity">
+        <activity android:name="rubylich.ktmp.features.posts.PostsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

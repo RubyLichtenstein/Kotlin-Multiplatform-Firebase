@@ -1,14 +1,10 @@
 package com.rubylich.ktmp
 
-import android.app.Activity
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import com.rubylich.ktmp.notifications.di.notificationsModule
-import org.koin.android.ext.android.startKoin
-import org.koin.log.EmptyLogger
 import rubylich.ktmp.CommonApplication
 import rubylich.ktmp.features.posts.Notifications
 import timber.log.Timber
@@ -25,14 +21,14 @@ class MyApplication : Application() {
         application.onStart()
 
         Timber.plant(Timber.DebugTree())
-
-        startKoin(
-            this,
-            listOf(
-                notificationsModule()
-            ),
-            logger = EmptyLogger()
-        )
+//
+//        startKoin(
+//            this,
+//            listOf(
+//                notificationsModule()
+//            ),
+//            logger = EmptyLogger()
+//        )
 
         val mNotificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

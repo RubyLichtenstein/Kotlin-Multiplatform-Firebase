@@ -1,24 +1,22 @@
-package com.rubylich.ktmp.notifications
+package rubylich.ktmp.notifications
 
 import android.app.Notification
 import android.content.Context
 import android.content.Intent
 import android.support.v4.app.NotificationCompat
-import com.rubylich.ktmp.PostsActivity
-import com.rubylich.ktmp.R
-import defaultPendingIntent
-import rubylich.ktmp.notifications.PushNotificationItem
+import com.example.testmodule.R
+import rubylich.ktmp.features.posts.PostsActivity
 
 
 interface NotificationBuilder {
-    fun build(context: Context, item: PushNotificationItem): Notification
+    fun build(context: Context, item: BaseNotificationItem): Notification
 }
 
 class NotificationBuilderImpl : NotificationBuilder {
 
     override fun build(
         context: Context,
-        item: PushNotificationItem
+        item: BaseNotificationItem
     ): Notification {
         return NotificationCompat.Builder(context, item.channel().channelId)
             .setSmallIcon(R.drawable.ic_android_black_24dp)//todo
@@ -27,7 +25,12 @@ class NotificationBuilderImpl : NotificationBuilder {
             .setAutoCancel(true)
             .setDefaults(Notification.DEFAULT_ALL)
             .setContentIntent(
-                defaultPendingIntent(Intent(context, PostsActivity::class.java), context)
+                defaultPendingIntent(
+                    Intent(
+                        context,
+                        PostsActivity::class.java
+                    ), context
+                )
             )//todo
             .build()
     }

@@ -1,17 +1,17 @@
-package rubylich.ktmp.repo
+package rubylich.ktmp.base
 
 import kotlinx.coroutines.await
 import rubylich.ktmp.functions.ts2kt_firebase_admin.Firestore
 
-actual abstract class Repo<T : Any> actual constructor(
+actual abstract class BaseRepo<T : Any> actual constructor(
     ref: String,
-    private val parser: Parser<T>
-) : IRepo<T> {
+    private val IBaseParser: IBaseParser<T>
+) : IBaseRepo<T> {
     private val collection = Firestore().collection(ref)
 
     actual override suspend fun get(id: String): T {
         val documentSnapshot = collection.doc(id).get().await()
-        return parser.parse(documentSnapshot)
+        return IBaseParser.parse(documentSnapshot)
     }
 
     actual override suspend fun set(id: String, t: T) {
@@ -27,6 +27,6 @@ actual abstract class Repo<T : Any> actual constructor(
     }
 
     actual override suspend fun getAll(): List<T> {
-        return collection.get().await().docs.map { parser.parse(it) }
+        return collection.get().await().docs.map { IBaseParser.parse(it) }
     }
 }
