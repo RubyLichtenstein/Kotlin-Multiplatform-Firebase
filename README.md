@@ -17,14 +17,20 @@
 
 ### Kotlin is everywhere!
 
-## Project directories.
+## Modules.
 
-- `android` - Android app.
+![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/modules.svg)
+
+
 - `common-all` - Multiplatform Module - share code between clients/server.
 - `common-client` - Multiplatform Module share code between clients: Android/iOS. 
 - `firebase` - Node.Js app.
+- `android` - Android app.
+- `iOS` - iOS app.
 
 ## Project Architecture
+
+![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/arch.svg)
 
 ### `common-all`
 
