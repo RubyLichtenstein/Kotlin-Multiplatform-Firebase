@@ -29,6 +29,9 @@
 - `iOS` - iOS app.
 
 ## Project Architecture
+
+![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/arch.svg)
+
 ### `common-all`
 
 #### Client/Server shared code.
