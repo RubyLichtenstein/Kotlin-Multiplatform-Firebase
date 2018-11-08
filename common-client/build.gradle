@@ -53,7 +53,7 @@ kotlin {
 //        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
 //                              ? presets.iosArm64 : presets.iosX64
 
-        fromPreset(presets.iosArm64 , 'iOS') {
+        fromPreset(presets.iosX64 , 'iOS') {
             compilations.main.outputKinds('FRAMEWORK')
         }
     }
@@ -113,7 +113,7 @@ kotlin {
         iOSMain {
             dependencies {
                 implementation project(":common-all")
-
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
             }
