@@ -77,14 +77,14 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
  https://plugins.jetbrains.com/plugin/6954-kotlin
 
 #### Running the Android app.
-//TODO
+`./gradlew android:app:installDebug`
 
 #### Running the iOS app.
 //TODO
 
 #### Running the Node.js App (deploy to Firebase)
 
-1. `cd common-all/firebase/functions`
+1. `cd firebase/functions`
 2. ` npm install`
 3. `./gradlew common-all:firebaseDeploy`
 
@@ -98,11 +98,3 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
 - Serialization https://github.com/Kotlin/kotlinx.serialization
 - Multiplatform Settings https://github.com/russhwolf/multiplatform-settings
 - mockk https://github.com/mockk/mockk
-
-## Resources
-
-### Kotlin Multiplatform
-//TODO
-
-### KotlinJs
-//TODO
