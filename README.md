@@ -17,16 +17,21 @@
 
 ### Kotlin is everywhere!
 
+This project is about to demonstrate the benfits of kotlin multiplatform and to show implementation of multiplatform mobile application (Android/iOS) with firebase as backend (Node.js).
+
+The application using Firestore to store list of posts, and firebase functions send notification to users for each new post. 
+
 ## Modules.
-
-![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/modules.svg)
-
 
 - `common-all` - Multiplatform Module - share code between clients/server.
 - `common-client` - Multiplatform Module share code between clients: Android/iOS. 
 - `firebase` - Node.Js app.
 - `android` - Android app.
 - `iOS` - iOS app.
+
+![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/modules.svg)
+
+
 
 ## Project Architecture
 
