@@ -54,6 +54,17 @@ kotlin {
             }
         }
         fromPreset(presets.android, 'android')
+
+        //for iOS device and App Store (arm64 target)
+        //for iOS emulator (x86_64 target)
+
+        // Change to `presets.iosArm64` to deploy the app to iPhone
+//        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
+//                              ? presets.iosArm64 : presets.iosX64
+
+        fromPreset(presets.iosArm64, 'iOS') {
+            compilations.main.outputKinds('FRAMEWORK')
+        }
     }
     sourceSets {
         commonMain {
@@ -105,6 +116,13 @@ kotlin {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-test'
                 implementation 'org.jetbrains.kotlin:kotlin-test-junit'
+            }
+        }
+
+        iOSMain {
+            dependencies {
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
             }
         }
     }
