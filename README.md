@@ -39,13 +39,13 @@ The application using Firestore to store list of posts, and firebase functions s
 
 ### `common-all`
 
-#### Client/Server shared code.
+#### Clients/Server shared code.
 - Data Models.
 - Repositories.
 
 ### `common-client`
 
-#### All Client shared code.
+#### Clients shared code.
 - Presenters. 
 
 #### Platform specific code.
@@ -58,12 +58,13 @@ Common module testing.
 https://github.com/mockk/mockk
 
 ### JVM
+
 ### JS
 
-NodeJs tests with jest.
-https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
+Jest https://jestjs.io/
 
 ### Native
+//TODO 
 
 ## Build run and test. 
 
