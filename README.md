@@ -23,8 +23,8 @@ The application using Firestore to store list of posts, and firebase functions s
 
 ## Modules.
 
-- `common-all` - Multiplatform Module - share code between clients/server.
-- `common-client` - Multiplatform Module share code between clients: Android/iOS. 
+- `common-all` - Multiplatform Module - shared code between clients/server.
+- `common-client` - Multiplatform Module - shared code between clients (Android/iOS). 
 - `firebase` - Node.Js app.
 - `android` - Android app.
 - `iOS` - iOS app.
