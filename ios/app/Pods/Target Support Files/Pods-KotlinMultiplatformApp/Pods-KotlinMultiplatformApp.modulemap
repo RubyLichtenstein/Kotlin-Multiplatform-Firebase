@@ -1,0 +1,6 @@
+framework module Pods_KotlinMultiplatformApp {
+  umbrella header "Pods-KotlinMultiplatformApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Himotoki {
+  umbrella header "Himotoki-umbrella.h"
+
+  export *
+  module * { export * }
+}
