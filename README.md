@@ -1,7 +1,5 @@
 # Kotlin Multiplatform Firebase.
 
-####  Android/iOS/Node.js
-
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin-logo.svg" width="50">
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Android_robot_2014.svg" width="50">
@@ -17,16 +15,21 @@
 
 ### Kotlin is everywhere!
 
+This project demonstrate the benfits of kotlin multiplatform by showing implementation of multiplatform mobile application (Android/iOS) with firebase as backend (Node.js) all in kotlin.
+
+The application using Firestore to store list of posts and firebase functions to send notifications new posts. 
+
 ## Modules.
+
+- `common-all` - Multiplatform Module - shared code between clients/server.
+- `common-client` - Multiplatform Module - shared code between clients (Android/iOS). 
+- `firebase` - Node.Js app.
+- `android` - Android app.
+- `iOS` - iOS app.
 
 ![modules_diagrams](https://github.com/RubyLichtenstein/Kotlin-Multiplatform-Firebase/blob/master/diagrams/modules.svg)
 
 
-- `common-all` - Multiplatform Module - share code between clients/server.
-- `common-client` - Multiplatform Module share code between clients: Android/iOS. 
-- `firebase` - Node.Js app.
-- `android` - Android app.
-- `iOS` - iOS app.
 
 ## Project Architecture
 
@@ -34,13 +37,13 @@
 
 ### `common-all`
 
-#### Client/Server shared code.
+#### Clients/Server shared code.
 - Data Models.
 - Repositories.
 
 ### `common-client`
 
-#### All Client shared code.
+#### Clients shared code.
 - Presenters. 
 
 #### Platform specific code.
@@ -53,12 +56,13 @@ Common module testing.
 https://github.com/mockk/mockk
 
 ### JVM
+
 ### JS
 
-NodeJs tests with jest.
-https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
+Jest https://jestjs.io/
 
 ### Native
+//TODO 
 
 ## Build run and test. 
 
@@ -72,14 +76,14 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
  https://plugins.jetbrains.com/plugin/6954-kotlin
 
 #### Running the Android app.
-//TODO
+`./gradlew android:app:installDebug`
 
 #### Running the iOS app.
 //TODO
 
 #### Running the Node.js App (deploy to Firebase)
 
-1. `cd common-all/firebase/functions`
+1. `cd firebase/functions`
 2. ` npm install`
 3. `./gradlew common-all:firebaseDeploy`
 
@@ -93,11 +97,3 @@ https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-tests
 - Serialization https://github.com/Kotlin/kotlinx.serialization
 - Multiplatform Settings https://github.com/russhwolf/multiplatform-settings
 - mockk https://github.com/mockk/mockk
-
-## Resources
-
-### Kotlin Multiplatform
-//TODO
-
-### KotlinJs
-//TODO
