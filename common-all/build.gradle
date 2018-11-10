@@ -63,7 +63,18 @@ kotlin {
 //                              ? presets.iosArm64 : presets.iosX64
 
         fromPreset(presets.iosArm64, 'iOS') {
-            compilations.main.outputKinds('FRAMEWORK')
+            compilations.main {
+                outputKinds('FRAMEWORK')
+//                cinterops {
+//                    firestore {
+//                        //compilation.target 'ios_arm64'
+////                        println "firestore target is $target"
+//                        packageName 'com.firebase.firestore'
+//                        defFile = file('src/iOSMain/c_interop/FirebaseFirestore.def')
+//                        includeDirs 'FirebaseFirestore.framework/Headers'
+//                    }
+//                }
+            }
         }
     }
     sourceSets {
@@ -121,7 +132,6 @@ kotlin {
 
         iOSMain {
             dependencies {
-                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
             }
