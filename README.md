@@ -15,9 +15,9 @@
 
 ### Kotlin is everywhere!
 
-This project demonstrate the benfits of kotlin multiplatform by showing implementation of multiplatform mobile application (Android/iOS) with firebase as backend (Node.js) all in kotlin.
+This project demonstrates the benfits of kotlin multiplatform by implementating a multiplatform mobile application (Android/iOS) with firebase as a backend (Node.js) all in kotlin.
 
-The application using Firestore to store list of posts and firebase functions to send notifications new posts. 
+The application is using Firestore to store a list of posts and firebase functions to send notifications for new posts. 
 
 ## Modules.
 
