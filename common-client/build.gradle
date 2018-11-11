@@ -53,7 +53,7 @@ kotlin {
 //        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
 //                              ? presets.iosArm64 : presets.iosX64
 
-        fromPreset(presets.iosArm64 , 'iOS') {
+        fromPreset(presets.iosX64 , 'iOS') {
             compilations.main.outputKinds('FRAMEWORK')
         }
     }
@@ -117,6 +117,28 @@ kotlin {
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
             }
+        }
+    }
+}
+
+// This task attaches native framework built from ios module to Xcode project
+// (see iosApp directory). Don't run this task directly,
+// Xcode runs this task itself during its build process.
+// Before opening the project from iosApp directory in Xcode,
+// make sure all Gradle infrastructure exists (gradle.wrapper, gradlew).
+task copyFramework {
+    def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
+    def target = project.findProperty("kotlin.target") ?: "iOS"
+    dependsOn "link${buildType.toLowerCase().capitalize()}Framework${target.capitalize()}"
+
+    doLast {
+        def srcFile = kotlin.targets."$target".compilations.main.getBinary("FRAMEWORK", buildType)
+        def targetDir = getProperty("configuration.build.dir")
+        copy {
+            from srcFile.parent
+            into targetDir
+            include 'common_client.framework/**'
+            include 'common_client.framework.dSYM'
         }
     }
 }

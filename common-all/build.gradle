@@ -39,6 +39,7 @@ def firebaseFunctionsTest = firebaseFunctionsPath + '/test'
 
 kotlin {
     targets {
+        def workingDir = new File(".").absolutePath
         fromPreset(presets.js, 'js') {
 
             compileTestKotlinJs.kotlinOptions {
@@ -62,18 +63,20 @@ kotlin {
 //        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
 //                              ? presets.iosArm64 : presets.iosX64
 
-        fromPreset(presets.iosArm64, 'iOS') {
+        fromPreset(presets.iosX64, 'iOS') {
             compilations.main {
                 outputKinds('FRAMEWORK')
-//                cinterops {
-//                    firestore {
-//                        //compilation.target 'ios_arm64'
-////                        println "firestore target is $target"
-//                        packageName 'com.firebase.firestore'
-//                        defFile = file('src/iOSMain/c_interop/FirebaseFirestore.def')
-//                        includeDirs 'FirebaseFirestore.framework/Headers'
-//                    }
-//                }
+                cinterops {
+                    firestore {
+                        packageName 'com.firebase.firestore'
+                        defFile = file('src/iOSMain/c_interop/FirebaseFirestore.def')
+                        linkerOpts "-F${workingDir}"
+                        includeDirs "${workingDir}/FirebaseFirestore.framework/Headers"
+                    }
+                }
+
+                linkerOpts '-rpath', '@executable_path/Frameworks'
+                linkerOpts "-F${workingDir}"
             }
         }
     }
@@ -131,11 +134,31 @@ kotlin {
         }
 
         iOSMain {
+            dependsOn commonMain
             dependencies {
+                //implementation 'org.jetbrains.kotlinx:atomicfu-native_debug_ios_x64:0.11.12'
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
             }
         }
+    }
+}
+
+// Fix ambigous configuration for dependencies
+kotlin.targets.matching { it.platformType.name == 'native' }.all {
+    compilations.all {
+        cinterops.all {
+            configurations[dependencyConfigurationName].attributes.attribute(
+                Usage.USAGE_ATTRIBUTE,
+                objects.named(Usage, 'kotlin-api')
+            )
+        }
+    }
+}
+
+task listConfigs {
+    doLast {
+        configurations.iOSMainImplementation.each { println it.name }
     }
 }
 

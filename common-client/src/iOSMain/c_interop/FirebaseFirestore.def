@@ -1,0 +1,4 @@
+language = Objective-C
+headers = FIRCollectionReference.h FIRDocumentChange.h FIRDocumentReference.h FIRDocumentSnapshot.h FIRFieldPath.h FIRFieldValue.h FIRFirestore.h FIRFirestoreErrors.h FIRFirestoreSettings.h FIRFirestoreSource.h FIRGeoPoint.h FIRListenerRegistration.h FIRQuery.h FIRQuerySnapshot.h FIRSnapshotMetadata.h FIRTimestamp.h FIRTransaction.h FIRWriteBatch.hFirebaseFirestore.h
+compilerOpts = -framework FirebaseFirestore
+linkerOpts = -framework FirebaseFirestore
