@@ -21,7 +21,7 @@ actual abstract class BaseRepo<T : Any> actual constructor(
                 if (error != null) {
                     cont.onError(Exception(error.localizedDescription))
                 } else {
-                    cont.onComplete(document!!.documents.filterNotNull().map { parser.parse(it) })
+                    cont.onComplete(document!!.documents.filterNotNull().map(parser::parse))
                 }
             }
         }
@@ -33,7 +33,7 @@ actual abstract class BaseRepo<T : Any> actual constructor(
                 if (error != null) {
                     cont.onError(Exception(error.localizedDescription))
                 } else {
-                    cont.onComplete(parser.parse(document!!))
+                    cont.onComplete(parser.parse(document!!.data()!!))
                 }
             }
         }
@@ -41,12 +41,15 @@ actual abstract class BaseRepo<T : Any> actual constructor(
 
 
     actual override suspend fun set(id: String, t: T) {
-//        return awaitCallback {
-//            collection.documentWithPath(id).setData(Mapper.map(t) as Map<Any?, *>) { error ->
-//
-//            }
-//        }
-        TODO()
+        return awaitCallback { cont ->
+            collection.documentWithPath(id).setData(parser.serialize(t) as Map<Any?, *>) { error ->
+                if (error != null) {
+                    cont.onError(Exception(error.localizedDescription))
+                } else {
+                    cont.onComplete(Unit)
+                }
+            }
+        }
     }
 
     actual override suspend fun delete(id: String) {
