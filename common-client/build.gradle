@@ -53,7 +53,7 @@ kotlin {
 //        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
 //                              ? presets.iosArm64 : presets.iosX64
 
-        def workingDir = new File("").absolutePath
+        def workingDir = buildscript.sourceFile.getParent()
         fromPreset(presets.iosX64 , 'iOS') {
             compilations.main {
                 outputKinds('FRAMEWORK')

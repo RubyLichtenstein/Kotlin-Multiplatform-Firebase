@@ -40,7 +40,7 @@ def firebaseFunctionsTest = firebaseFunctionsPath + '/test'
 kotlin {
 
     targets {
-        def workingDir = new File("").absolutePath
+        def workingDir = buildscript.sourceFile.getParent()
         fromPreset(presets.iosX64, 'iOS') {
             compilations.main {
                 outputKinds('FRAMEWORK')
