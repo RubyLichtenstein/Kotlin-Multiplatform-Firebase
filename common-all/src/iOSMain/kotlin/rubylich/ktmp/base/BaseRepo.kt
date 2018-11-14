@@ -1,10 +1,15 @@
 package rubylich.ktmp.base
 
 import com.firebase.firestore.FIRFirestore
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.GlobalScope
+import rubylich.ktmp.awaitCallback
+import kotlinx.serialization.Mapper
 
 actual abstract class BaseRepo<T : Any> actual constructor(
-    ref: String,
-    IBaseParser: IBaseParser<T>
+        ref: String,
+        private val parser: IBaseParser<T>
 ) : IBaseRepo<T> {
 
     init {
@@ -12,25 +17,55 @@ actual abstract class BaseRepo<T : Any> actual constructor(
         FIRFirestore.initialize()
     }
 
-    val collection = FIRFirestore.firestore().collectionWithPath(ref)
+    private val collection = FIRFirestore.firestore().collectionWithPath(ref)
 
     actual override suspend fun getAll(): List<T> {
-//        collection.
-        TODO()
+        return awaitCallback { cont ->
+            collection.getDocumentsWithCompletion { document, error ->
+                if (error != null) {
+                    cont.onError(Exception(error.localizedDescription))
+                } else {
+                    cont.onComplete(parser.parse(document!!))
+                }
+            }
+        }
     }
 
     actual override suspend fun get(id: String): T {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return awaitCallback { cont ->
+            collection.documentWithPath(id).getDocumentWithCompletion { document, error ->
+                if (error != null) {
+                    cont.onError(Exception(error.localizedDescription))
+                } else {
+                    cont.onComplete(parser.parse(document!!))
+                }
+            }
+        }
     }
 
+
     actual override suspend fun set(id: String, t: T) {
-//        collection.documentWithPath(id).setData()
-        //todo
+//        return awaitCallback {
+//            collection.documentWithPath(id).setData(Mapper.map(t) as Map<Any?, *>) { error ->
+//
+//            }
+//        }
+        TODO()
     }
+
     actual override suspend fun delete(id: String) {
-        collection.documentWithPath(id).deleteDocument()
+        return awaitCallback {
+            collection.documentWithPath(id).deleteDocumentWithCompletion { error ->
+                cont.onError(Exception(error))
+            }
+        }
     }
+
     actual override suspend fun update(id: String, field: String, value: Any) {
-        collection.documentWithPath(id).updateData(mapOf(field to value))
+        return awaitCallback { cont ->
+            collection.documentWithPath(id).updateData(mapOf(field to value)) { error ->
+                cont.onError(Exception(error))
+            }
+        }
     }
 }

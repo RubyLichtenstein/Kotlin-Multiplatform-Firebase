@@ -2,7 +2,7 @@ package rubylich.ktmp.base
 
 expect abstract class BaseRepo<T : Any>(
     ref: String,
-    IBaseParser: IBaseParser<T>
+    parser: IBaseParser<T>
 ) : IBaseRepo<T> {
     override suspend fun getAll(): List<T>
     override suspend fun get(id: String): T

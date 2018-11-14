@@ -5,7 +5,7 @@ import rubylich.ktmp.lib.await
 
 actual abstract class BaseRepo<T : Any> actual constructor(
     ref: String,
-    private val IBaseParser: IBaseParser<T>
+    private val parser: IBaseParser<T>
 ) : IBaseRepo<T> {
     val collection = FirebaseFirestore.getInstance().collection(ref)
 
@@ -15,7 +15,7 @@ actual abstract class BaseRepo<T : Any> actual constructor(
             .get()
             .await()
 
-        return IBaseParser.parse(documentSnapshot)
+        return parser.parse(documentSnapshot)
     }
 
     actual override suspend fun set(id: String, t: T) {
@@ -40,5 +40,5 @@ actual abstract class BaseRepo<T : Any> actual constructor(
     }
 
     actual override suspend fun getAll(): List<T> =
-        collection.get().await().documents.map { IBaseParser.parse(it) }
+        collection.get().await().documents.map { parser.parse(it) }
 }
