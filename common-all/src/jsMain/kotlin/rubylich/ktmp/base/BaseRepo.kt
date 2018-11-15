@@ -5,13 +5,13 @@ import rubylich.ktmp.functions.ts2kt_firebase_admin.Firestore
 
 actual abstract class BaseRepo<T : Any> actual constructor(
     ref: String,
-    private val IBaseParser: IBaseParser<T>
+    private val parser: IBaseParser<T>
 ) : IBaseRepo<T> {
     private val collection = Firestore().collection(ref)
 
     actual override suspend fun get(id: String): T {
         val documentSnapshot = collection.doc(id).get().await()
-        return IBaseParser.parse(documentSnapshot)
+        return parser.parse(documentSnapshot)
     }
 
     actual override suspend fun set(id: String, t: T) {
@@ -27,6 +27,6 @@ actual abstract class BaseRepo<T : Any> actual constructor(
     }
 
     actual override suspend fun getAll(): List<T> {
-        return collection.get().await().docs.map { IBaseParser.parse(it) }
+        return collection.get().await().docs.map { parser.parse(it) }
     }
 }
