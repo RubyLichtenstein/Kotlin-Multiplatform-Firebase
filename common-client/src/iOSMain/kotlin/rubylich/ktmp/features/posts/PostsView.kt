@@ -27,19 +27,21 @@ actual class PostsView @OverrideInit constructor(coder: NSCoder) : IPostsView, U
         super.viewDidLoad()
         postRepo = PostsRepo()
 
-        tableView.setDataSource(object: UITableViewDataSourceProtocol {
-            override fun tableView(tableView: UITableView, cellForRowAtIndexPath: NSIndexPath): UITableViewCell {
-                val cell = tableView.dequeueReusableCellWithIdentifier( "PostCell", cellForRowAtIndexPath)
-                val post = posts[cellForRowAtIndexPath.row.toInt()]
-                cell.textLabel?.text = post.content
-                return cell
-            }
+        tableView.setDataSource(null)//todo add data source
+//            object: UITableViewDataSourceProtocol {
+//            override fun tableView(tableView: UITableView, cellForRowAtIndexPath: NSIndexPath): UITableViewCell {
+//                val cell = tableView.dequeueReusableCellWithIdentifier( "PostCell", cellForRowAtIndexPath)
+//                val post = posts[cellForRowAtIndexPath.row.toInt()]
+//                cell.textLabel?.text = post.content
+//                return cell
+//            }
+//
+//            override fun tableView(tableView: UITableView, numberOfRowsInSection: NSInteger): NSInteger {
+//                return posts.size.toLong()
+//            }
+//
+//        }
 
-            override fun tableView(tableView: UITableView, numberOfRowsInSection: NSInteger): NSInteger {
-                return posts.size.toLong()
-            }
-
-        })
     }
 
     actual override fun showPosts(posts: List<Post>) {

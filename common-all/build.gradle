@@ -36,6 +36,7 @@ def     kotlinJsOutputFile = "common-all.js"
 def firebaseFunctionsPath = "../firebase/functions/src"
 def firebaseFunctionsMain = firebaseFunctionsPath + '/main'
 def firebaseFunctionsTest = firebaseFunctionsPath + '/test'
+def cInteropFirestorePath = "src/iOSMain/c_interop/firestoer/"
 
 kotlin {
 
@@ -47,9 +48,9 @@ kotlin {
                 cinterops {
                     firestore {
                         packageName 'com.firebase.firestore'
-                        defFile = file('src/iOSMain/c_interop/FirebaseFirestore.def')
-                        linkerOpts "-F${workingDir}"
-                        includeDirs "${workingDir}/FirebaseFirestore.framework/Headers"
+                        defFile = file("${cInteropFirestorePath}FirebaseFirestore.def")
+                        linkerOpts "-F${cInteropFirestorePath}"
+                        includeDirs "${cInteropFirestorePath}/FirebaseFirestore.framework/Headers"
                     }
                 }
 
