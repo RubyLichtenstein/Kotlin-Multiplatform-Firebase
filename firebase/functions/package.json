@@ -12,12 +12,12 @@
     "test": "node_modules/.bin/jest src/test"
   },
   "dependencies": {
+    "kotlin": "^1.3.10",
+    "kotlinx-coroutines-core": "1.0.1",
     "@google-cloud/firestore": "^0.18.0",
     "firebase-admin": "~6.1.0",
     "firebase-bolt": "^0.8.4",
     "firebase-functions": "^2.0.5",
-    "kotlin": "^1.3.0",
-    "kotlinx-coroutines-core": "1.0.0",
     "npm": "^6.2.0",
     "typescript": "^3.1.4"
   },
@@ -28,6 +28,6 @@
   "main": "src/main/common-all.js",
   "devDependencies": {
     "jest": "^23.6.0",
-    "kotlin-test": "^1.3.0"
+    "kotlin-test": "^1.3.10"
   }
 }
