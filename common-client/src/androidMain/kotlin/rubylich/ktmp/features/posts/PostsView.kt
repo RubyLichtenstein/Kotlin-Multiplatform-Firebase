@@ -14,7 +14,6 @@ import com.example.testmodule.R
 import com.russhwolf.settings.PlatformSettings
 import kotlinx.android.synthetic.main.add_post_dialog_layout.view.*
 import kotlinx.android.synthetic.main.posts_view_layout.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import rubylich.ktmp.features.posts.notifications.PostsUnreadNotificationsRepo
@@ -31,7 +30,6 @@ actual class PostsView : Fragment(), IPostsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         postsPresenter = PostsPresenter(
-            Dispatchers.Main,
             PostsUnreadNotificationsRepo(PlatformSettings.Factory(context!!)),
             PostsRepo(),
             this

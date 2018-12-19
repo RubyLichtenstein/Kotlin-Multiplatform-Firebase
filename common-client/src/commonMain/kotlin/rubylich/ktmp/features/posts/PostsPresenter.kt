@@ -1,23 +1,29 @@
 package rubylich.ktmp.features.posts
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.launch
 import rubylich.ktmp.base.IBasePresenter
-import rubylich.ktmp.launchAndCatch
 import rubylich.ktmp.notifications.IUnreadNotificationsRepo
 import kotlin.coroutines.CoroutineContext
 import kotlin.random.Random
 
 class PostsPresenter(
-    private val uiContext: CoroutineContext,
     private val unreadNotificationsRepo: IUnreadNotificationsRepo,
     private val postsRepo: IPostBaseRepo,
     private val postsViewPostsView: IPostsView
-) : IBasePresenter {
+) : IBasePresenter, CoroutineScope {
+    val job = SupervisorJob()
+
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.Main
 
     override fun onCreate() {
         launch { showPosts() }
 
-        with(postsViewPostsView) {
+        postsViewPostsView.apply {
             launch {
                 refresh()
                     .consumeEach {
@@ -40,14 +46,10 @@ class PostsPresenter(
                     }
             }
         }
-
     }
 
-    private fun launch(function: suspend () -> Unit) =
-        launchAndCatch(uiContext, postsViewPostsView::showError, function)
-
     override fun onDestroy() {
-
+        job.cancel()
     }
 
     suspend fun showPosts() {

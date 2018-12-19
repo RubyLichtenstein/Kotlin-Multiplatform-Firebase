@@ -1,7 +1,7 @@
 package rubylich.ktmp.base
 
 import com.firebase.firestore.FIRFirestore
-import rubylich.ktmp.awaitCallback
+import rubylich.ktmp.util.awaitCallback
 
 actual abstract class BaseRepo<T : Any> actual constructor(
         ref: String,
